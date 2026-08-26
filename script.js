@@ -193,7 +193,15 @@
                     if (entry.isIntersecting) {
                         const id = entry.target.getAttribute('id');
                         navLinks.forEach((link) => {
-                            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                            const href = link.getAttribute('href');
+                            // Handle cross-page links and same-page links
+                            const isActive = href === `#${id}` || href === `index.html#${id}`;
+                            // Don't auto-remove active from links pointing to current page if we are on menu.html
+                            if (window.location.pathname.endsWith('menu.html') && href === '#menu-page') {
+                                link.classList.add('active');
+                            } else {
+                                link.classList.toggle('active', isActive);
+                            }
                         });
                     }
                 });
@@ -252,12 +260,22 @@
     const initSmoothScroll = () => {
         const NAVBAR_OFFSET = 80;
 
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        document.querySelectorAll('a[href^="#"], a[href^="index.html#"]').forEach((anchor) => {
             anchor.addEventListener('click', (e) => {
                 const href = anchor.getAttribute('href');
-                if (href === '#' || href.length < 2) return;
+                const isCrossPage = href.startsWith('index.html#');
 
-                const target = document.querySelector(href);
+                // If it's a cross-page link and we are not on index.html, let the browser handle it
+                if (isCrossPage && !window.location.pathname.endsWith('index.html') && window.location.pathname !== '/') {
+                    return;
+                }
+
+                // Get the ID target string
+                const targetId = isCrossPage ? href.replace('index.html', '') : href;
+
+                if (targetId === '#' || targetId.length < 2) return;
+
+                const target = document.querySelector(targetId);
                 if (!target) return;
 
                 e.preventDefault();
