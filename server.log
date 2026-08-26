@@ -1,0 +1,12 @@
+127.0.0.1 - - [26/Aug/2026 20:19:18] "HEAD /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [26/Aug/2026 20:19:26] "HEAD /menu.html HTTP/1.1" 200 -
+127.0.0.1 - - [26/Aug/2026 20:19:35] "HEAD /styles.css HTTP/1.1" 200 -
+127.0.0.1 - - [26/Aug/2026 20:23:00] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [26/Aug/2026 20:23:00] "GET /styles.css HTTP/1.1" 200 -
+127.0.0.1 - - [26/Aug/2026 20:23:00] "GET /assets/images/chef-cooking.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [26/Aug/2026 20:23:00] "GET /assets/images/hero-bg.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [26/Aug/2026 20:23:00] "GET /script.js HTTP/1.1" 200 -
+127.0.0.1 - - [26/Aug/2026 20:23:00] "GET /assets/images/hero-dish.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [26/Aug/2026 20:23:00] "GET /assets/images/chef-portrait.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [26/Aug/2026 20:23:00] "GET /assets/images/signature-dish.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [26/Aug/2026 20:23:04] "GET /menu.html HTTP/1.1" 200 -

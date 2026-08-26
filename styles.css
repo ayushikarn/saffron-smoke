@@ -1069,17 +1069,17 @@ button {
 
 
 /* ==========================================================
-   §12b  EXPERIENCE / MENU SECTION
+   §12b  MENU REDESIGN SECTION
    ========================================================== */
 
-.experience-section {
+.menu-section {
   background: var(--clr-bg);
   padding: 8rem 5% 10rem;
   position: relative;
   overflow: hidden;
 }
 
-.experience-section::before {
+.menu-section::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -1090,21 +1090,50 @@ button {
   pointer-events: none;
 }
 
-.experience-inner {
-  max-width: 1400px;
+.full-menu-section {
+  padding-top: 4rem; /* Less padding for the dedicated menu page */
+}
+
+.menu-inner {
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.experience-header {
+.menu-page-header {
+  padding: 10rem 5% 4rem;
+  text-align: center;
+}
+
+.menu-page-header .section-label {
+  justify-content: center;
+}
+
+.menu-page-title {
+  font-family: var(--ff-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--clr-ivory);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.menu-page-subtitle {
+  color: rgba(248, 243, 234, 0.55);
+  font-size: 1.05rem;
+  line-height: 1.9;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.menu-header {
   text-align: center;
   margin-bottom: 5rem;
 }
 
-.experience-header .section-label {
+.menu-header .section-label {
   justify-content: center;
 }
 
-.experience-title {
+.menu-title {
   font-family: var(--ff-heading);
   font-size: clamp(2.2rem, 4vw, 3.5rem);
   color: var(--clr-ivory);
@@ -1112,7 +1141,7 @@ button {
   margin-bottom: 1rem;
 }
 
-.experience-subtitle {
+.menu-subtitle {
   color: rgba(248, 243, 234, 0.5);
   font-size: 1.05rem;
   line-height: 1.8;
@@ -1120,81 +1149,76 @@ button {
   margin: 0 auto;
 }
 
-.experience-grid {
+.menu-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-  margin-bottom: 4rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem 6rem;
+  margin-bottom: 5rem;
 }
 
-.experience-card {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: transform 0.5s var(--ease-smooth), box-shadow 0.5s var(--ease-smooth);
-  cursor: pointer;
+.menu-category {
+  margin-bottom: 2rem;
 }
 
-.experience-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(200, 169, 106, 0.06);
-}
-
-.experience-card-image {
-  width: 100%;
-  height: 260px;
-  overflow: hidden;
-}
-
-.experience-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s var(--ease-smooth);
-}
-
-.experience-card:hover .experience-card-image img {
-  transform: scale(1.08);
-}
-
-.experience-card-content {
-  padding: 2rem;
-}
-
-.experience-card-number {
+.menu-category-title {
   font-family: var(--ff-heading);
-  font-size: 2.5rem;
-  color: rgba(200, 169, 106, 0.15);
-  font-weight: 700;
-  line-height: 1;
-  display: block;
-  margin-bottom: 0.8rem;
-}
-
-.experience-card-title {
-  font-family: var(--ff-heading);
-  font-size: 1.4rem;
-  color: var(--clr-ivory);
-  margin-bottom: 0.8rem;
+  font-size: 1.8rem;
+  color: var(--clr-gold);
+  margin-bottom: 2.5rem;
   font-weight: 600;
-}
-
-.experience-card-text {
-  color: rgba(248, 243, 234, 0.5);
-  font-size: 0.9rem;
-  line-height: 1.8;
-  margin-bottom: 1.2rem;
-}
-
-.experience-card-price {
-  font-family: var(--ff-body);
-  font-size: 0.78rem;
+  border-bottom: 1px solid var(--clr-gold-30);
+  padding-bottom: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--clr-gold);
-  font-weight: 600;
 }
 
-.experience-cta {
+.menu-item {
+  margin-bottom: 2rem;
+}
+
+.menu-item:last-child {
+  margin-bottom: 0;
+}
+
+.menu-item-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.menu-item-name {
+  font-family: var(--ff-heading);
+  font-size: 1.25rem;
+  color: var(--clr-ivory);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.menu-item-dots {
+  flex-grow: 1;
+  border-bottom: 2px dotted rgba(200, 169, 106, 0.3);
+  margin: 0 1rem;
+  position: relative;
+  top: -6px; /* Adjust to align visually with the baseline of text */
+}
+
+.menu-item-price {
+  font-family: var(--ff-body);
+  font-size: 1rem;
+  color: var(--clr-gold);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.menu-item-text {
+  color: rgba(248, 243, 234, 0.5);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 85%;
+}
+
+.menu-cta {
   text-align: center;
 }
 
@@ -1526,6 +1550,10 @@ button {
 
 @media (max-width: 1024px) {
 
+  .menu-grid {
+    gap: 3rem 4rem;
+  }
+
   .hero-content {
     flex-direction: column;
     text-align: center;
@@ -1589,9 +1617,9 @@ button {
     justify-content: center;
   }
 
-  .experience-grid {
+  .menu-grid {
     grid-template-columns: 1fr;
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto 4rem;
   }
 
@@ -1696,6 +1724,31 @@ button {
     width: 70%;
     margin: -40px auto 0;
     border: 3px solid var(--clr-bg);
+  }
+
+  .menu-page-header {
+    padding-top: 8rem;
+  }
+
+  .menu-item-text {
+    max-width: 100%;
+  }
+
+  .menu-item-header {
+    flex-wrap: wrap;
+  }
+
+  .menu-item-name {
+    flex: 1 1 auto;
+    white-space: normal;
+  }
+
+  .menu-item-price {
+    flex: 0 0 auto;
+  }
+
+  .menu-item-dots {
+    display: none;
   }
 
   .chef-stats {
