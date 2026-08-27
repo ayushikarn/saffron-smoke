@@ -736,106 +736,30 @@ button {
 
 
 /* ==========================================================
-   §10  CHEF SECTION
+   §10  STORY / TIMELINE SECTION
    ========================================================== */
 
-.chef-section {
+.story-section {
   background: var(--clr-bg);
   padding: var(--sp-3xl) var(--side-padding) var(--sp-4xl);
   position: relative;
   overflow: hidden;
 }
 
-.chef-section::before {
+.story-section::before {
   content: '';
   position: absolute;
   top: 0;
-  right: 0;
-  width: 40%;
+  left: 0;
+  width: 100%;
   height: 100%;
   background: radial-gradient(
-    ellipse at top right,
-    rgba(200, 169, 106, 0.03) 0%,
-    transparent 70%
+    ellipse at center,
+    rgba(200, 169, 106, 0.02) 0%,
+    transparent 80%
   );
   pointer-events: none;
-}
-
-/* ── Inner Grid ───────────────────────────────────────── */
-
-.chef-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-2xl);
-  align-items: center;
-}
-
-/* ── Images ───────────────────────────────────────────── */
-
-.chef-images {
-  position: relative;
-  padding: 2rem;
-}
-
-.chef-main-image {
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  position: relative;
-  box-shadow: var(--shadow-chef);
-}
-
-.chef-main-image img {
-  width: 100%;
-  height: 600px;
-  object-fit: cover;
-  transition: transform 0.6s var(--ease-smooth);
-}
-
-.chef-main-image:hover img {
-  transform: scale(1.05);
-}
-
-.chef-secondary-image {
-  position: absolute;
-  bottom: -30px;
-  right: -30px;
-  width: 55%;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-card);
-  border: 3px solid var(--clr-bg);
-  z-index: 2;
-}
-
-.chef-secondary-image img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  transition: transform 0.6s var(--ease-smooth);
-}
-
-.chef-secondary-image:hover img {
-  transform: scale(1.05);
-}
-
-.chef-accent-frame {
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  width: 120px;
-  height: 120px;
-  border-top: 1px solid var(--clr-gold-30);
-  border-left: 1px solid var(--clr-gold-30);
-  pointer-events: none;
-  z-index: 3;
-}
-
-/* ── Content ──────────────────────────────────────────── */
-
-.chef-content {
-  position: relative;
+  z-index: 0;
 }
 
 /* ── Shared Section Label ─────────────────────────────── */
@@ -861,57 +785,164 @@ button {
   flex-shrink: 0;
 }
 
-/* ── Chef Typography ──────────────────────────────────── */
+/* ── Story Header ─────────────────────────────────────── */
 
-.chef-name {
+.story-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: var(--sp-3xl);
+}
+
+.story-header .section-label {
+  justify-content: center;
+}
+
+.story-title {
   font-family: var(--ff-heading);
-  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
   color: var(--clr-ivory);
   line-height: 1.15;
-  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* ── Story Timeline ───────────────────────────────────── */
+
+.story-timeline {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* The vertical line in the center (Desktop/Laptop) */
+.story-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--clr-gold-30), var(--clr-gold-30), transparent);
+  transform: translateX(-50%);
+}
+
+.story-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2xl);
+  align-items: center;
+  margin-bottom: var(--sp-3xl);
+  position: relative;
+}
+
+.story-item:last-child {
+  margin-bottom: 0;
+}
+
+/* The dot on the timeline */
+.story-item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--clr-bg);
+  border: 2px solid var(--clr-gold);
+  z-index: 2;
+  transition: all 0.4s var(--ease-smooth);
+}
+
+.story-item:hover::after {
+  background: var(--clr-gold);
+  box-shadow: 0 0 15px rgba(200, 169, 106, 0.4);
+}
+
+/* ── Story Content & Image ────────────────────────────── */
+
+.story-content {
+  padding: 0 3rem;
+  position: relative;
+}
+
+.story-item-reverse .story-content {
+  order: 2;
+}
+
+.story-image {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-chef);
+  height: 500px; /* Cinematic aspect ratio */
+  position: relative;
+}
+
+.story-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-smooth);
+}
+
+.story-item:hover .story-image img {
+  transform: scale(1.05);
+}
+
+/* ── Typography within Timeline ───────────────────────── */
+
+.story-chapter {
+  font-family: var(--ff-heading);
+  font-size: 4rem;
+  color: rgba(200, 169, 106, 0.15);
   font-weight: 700;
+  line-height: 1;
+  position: absolute;
+  top: -2rem;
+  left: 2rem;
+  z-index: -1;
 }
 
-.chef-title-text {
-  font-family: var(--ff-body);
+.story-heading {
+  font-family: var(--ff-heading);
+  font-size: 2rem;
   color: var(--clr-gold);
-  font-size: 0.95rem;
-  font-style: italic;
-  letter-spacing: 1px;
-  margin-bottom: var(--sp-lg);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
 }
 
-.chef-philosophy {
+.story-text {
   color: var(--clr-ivory-60);
-  font-size: 1rem;
-  line-height: 1.95;
-  margin-bottom: var(--sp-lg);
+  font-size: 1.05rem;
+  line-height: 1.9;
+  margin-bottom: 1rem;
 }
 
-.chef-quote {
+.story-quote {
   font-family: var(--ff-heading);
   font-size: 1.35rem;
   color: var(--clr-gold-85);
   font-style: italic;
   line-height: 1.6;
   border-left: 2px solid var(--clr-gold-30);
-  padding-left: 2rem;
-  margin: 3rem 0;
+  padding-left: 1.5rem;
+  margin: 2.5rem 0;
 }
 
-.chef-signature {
+.story-signature {
   font-family: var(--ff-heading);
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   color: var(--clr-gold);
   font-style: italic;
-  opacity: 0.6;
-  margin-top: 2rem;
+  opacity: 0.8;
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.chef-signature::before {
+.story-signature::before {
   content: '';
   width: 30px;
   height: 1px;
@@ -919,13 +950,21 @@ button {
   flex-shrink: 0;
 }
 
-/* ── Chef Stats ───────────────────────────────────────── */
+/* ── Stats Container ──────────────────────────────────── */
+
+.chef-stats-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
 
 .chef-stats {
   display: flex;
-  gap: 3rem;
-  margin-top: 3rem;
-  padding-top: 3rem;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: var(--sp-4xl);
+  padding-top: var(--sp-2xl);
   border-top: 1px solid var(--clr-white-06);
 }
 
@@ -1665,25 +1704,36 @@ button {
     width: 65%;
   }
 
-  .chef-inner {
+  .story-timeline::before {
+    display: none;
+  }
+
+  .story-item {
     grid-template-columns: 1fr;
     gap: var(--sp-xl);
   }
 
-  .chef-images {
-    max-width: 500px;
-    margin: 0 auto;
+  .story-item::after {
+    display: none;
   }
 
-  .chef-content {
+  .story-item-reverse .story-content {
+    order: unset;
+  }
+
+  .story-content {
+    padding: 0;
     text-align: center;
   }
 
-  .section-label {
-    justify-content: center;
+  .story-chapter {
+    position: static;
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--clr-gold-30);
   }
 
-  .chef-quote {
+  .story-quote {
     border-left: none;
     padding-left: 0;
     border-top: 1px solid var(--clr-gold-30);
@@ -1691,7 +1741,11 @@ button {
     padding: 2rem 0;
   }
 
-  .chef-signature {
+  .story-signature {
+    justify-content: center;
+  }
+
+  .section-label {
     justify-content: center;
   }
 
@@ -1787,25 +1841,16 @@ button {
     font-size: clamp(2.2rem, 8vw, 3.5rem);
   }
 
-  .chef-section {
+  .story-section {
     padding: 5rem var(--side-padding) 6rem;
   }
 
-  .chef-inner {
-    gap: 3rem;
+  .story-item {
+    gap: 2rem;
   }
 
-  .chef-main-image img {
-    height: 400px;
-  }
-
-  .chef-secondary-image {
-    position: relative;
-    bottom: auto;
-    right: auto;
-    width: 70%;
-    margin: -40px auto 0;
-    border: 3px solid var(--clr-bg);
+  .story-image {
+    height: 350px;
   }
 
   .menu-page-header {
@@ -1907,8 +1952,8 @@ button {
     font-size: 2rem;
   }
 
-  .chef-secondary-image {
-    width: 85%;
+  .story-image {
+    height: 250px;
   }
 
   .footer-social {
