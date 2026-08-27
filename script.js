@@ -193,15 +193,7 @@
                     if (entry.isIntersecting) {
                         const id = entry.target.getAttribute('id');
                         navLinks.forEach((link) => {
-                            const href = link.getAttribute('href');
-                            // Handle cross-page links and same-page links
-                            const isActive = href === `#${id}` || href === `index.html#${id}`;
-                            // Don't auto-remove active from links pointing to current page if we are on menu.html
-                            if (window.location.pathname.endsWith('menu.html') && href === '#menu-page') {
-                                link.classList.add('active');
-                            } else {
-                                link.classList.toggle('active', isActive);
-                            }
+                            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
                         });
                     }
                 });
@@ -260,22 +252,12 @@
     const initSmoothScroll = () => {
         const NAVBAR_OFFSET = 80;
 
-        document.querySelectorAll('a[href^="#"], a[href^="index.html#"]').forEach((anchor) => {
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener('click', (e) => {
                 const href = anchor.getAttribute('href');
-                const isCrossPage = href.startsWith('index.html#');
+                if (href === '#' || href.length < 2) return;
 
-                // If it's a cross-page link and we are not on index.html, let the browser handle it
-                if (isCrossPage && !window.location.pathname.endsWith('index.html') && window.location.pathname !== '/') {
-                    return;
-                }
-
-                // Get the ID target string
-                const targetId = isCrossPage ? href.replace('index.html', '') : href;
-
-                if (targetId === '#' || targetId.length < 2) return;
-
-                const target = document.querySelector(targetId);
+                const target = document.querySelector(href);
                 if (!target) return;
 
                 e.preventDefault();
@@ -296,7 +278,7 @@
     // ──────────────────────────────────────────────
 
     const initScrollReveal = () => {
-        const revealElements = document.querySelectorAll('.reveal, .reveal-item, .reveal-scale');
+        const revealElements = document.querySelectorAll('.reveal');
         if (!revealElements.length) return;
 
         const observerOptions = {
@@ -332,7 +314,6 @@
 
         const heroBgImg = document.querySelector('.hero-bg img');
         const heroDish = document.querySelector('.hero-dish-wrapper');
-        const parallaxBgElements = document.querySelectorAll('[data-parallax]');
         let parallaxTicking = false;
 
         const updateParallax = () => {
@@ -347,17 +328,6 @@
                 const dishOffset = clamp(scrollY * -0.1, -100, 0);
                 heroDish.style.transform = `translateY(${dishOffset}px)`;
             }
-
-            // Generic parallax for menu backgrounds
-            parallaxBgElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                // Check if element is in viewport
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    // Calculate a subtle offset based on position relative to center of screen
-                    const offset = (rect.top - (window.innerHeight / 2)) * 0.15;
-                    el.style.backgroundPositionY = `calc(50% + ${offset}px)`;
-                }
-            });
 
             parallaxTicking = false;
         };
@@ -374,7 +344,6 @@
             if (!isDesktop()) {
                 if (heroBgImg) heroBgImg.style.transform = '';
                 if (heroDish) heroDish.style.transform = '';
-                parallaxBgElements.forEach(el => el.style.backgroundPositionY = '');
             }
         }, 250));
     };
@@ -730,164 +699,6 @@
 
 
     // ══════════════════════════════════════════════
-    // ──────────────────────────────────────────────
-    //  19. REVIEWS CAROUSEL
-    // ──────────────────────────────────────────────
-
-    const initReviewsCarousel = () => {
-        const carousel = document.getElementById('reviewsCarousel');
-        if (!carousel) return;
-
-        const cards = Array.from(carousel.querySelectorAll('.review-card'));
-        const btnPrev = document.querySelector('.review-prev');
-        const btnNext = document.querySelector('.review-next');
-        const dotsContainer = document.getElementById('reviewDots');
-
-        if (!cards.length || !btnPrev || !btnNext || !dotsContainer) return;
-
-        let currentIndex = 0;
-        let isAutoPlaying = true;
-        let autoPlayInterval;
-        const AUTOPLAY_DELAY = 5000;
-
-        // Determine how many cards are visible based on width
-        const getVisibleCards = () => {
-            const width = window.innerWidth;
-            if (width < 768) return 1;
-            if (width < 1024) return 2;
-            return 4; // Desktop matches reference
-        };
-
-        let visibleCards = getVisibleCards();
-        let totalSteps = Math.max(1, cards.length - visibleCards + 1);
-
-        // Build dots
-        const buildDots = () => {
-            dotsContainer.innerHTML = '';
-            totalSteps = Math.max(1, cards.length - visibleCards + 1);
-            for (let i = 0; i < totalSteps; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'review-dot' + (i === 0 ? ' active' : '');
-                dot.dataset.index = i;
-                dot.addEventListener('click', () => {
-                    goToSlide(i);
-                    resetAutoPlay();
-                });
-                dotsContainer.appendChild(dot);
-            }
-        };
-
-        const updateDots = () => {
-            const dots = dotsContainer.querySelectorAll('.review-dot');
-            dots.forEach((dot, index) => {
-                if (index === currentIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-        };
-
-        const goToSlide = (index) => {
-            // Constrain bounds
-            if (index < 0) {
-                currentIndex = totalSteps - 1;
-            } else if (index >= totalSteps) {
-                currentIndex = 0;
-            } else {
-                currentIndex = index;
-            }
-
-            // Calculate exact offset based on card width + gap
-            const gap = parseFloat(getComputedStyle(carousel).gap) || 24; // 1.5rem
-            const cardWidth = cards[0].offsetWidth;
-            const scrollPos = currentIndex * (cardWidth + gap);
-
-            carousel.scrollTo({
-                left: scrollPos,
-                behavior: 'smooth'
-            });
-
-            updateDots();
-        };
-
-        const nextSlide = () => {
-            goToSlide(currentIndex + 1);
-        };
-
-        const prevSlide = () => {
-            goToSlide(currentIndex - 1);
-        };
-
-        // Event listeners
-        btnNext.addEventListener('click', () => {
-            nextSlide();
-            resetAutoPlay();
-        });
-
-        btnPrev.addEventListener('click', () => {
-            prevSlide();
-            resetAutoPlay();
-        });
-
-        // Autoplay logic
-        const startAutoPlay = () => {
-            if (!isAutoPlaying) return;
-            clearInterval(autoPlayInterval);
-            autoPlayInterval = setInterval(nextSlide, AUTOPLAY_DELAY);
-        };
-
-        const resetAutoPlay = () => {
-            if (isAutoPlaying) {
-                startAutoPlay();
-            }
-        };
-
-        const stopAutoPlay = () => {
-            clearInterval(autoPlayInterval);
-        };
-
-        // Pause on hover
-        carousel.addEventListener('mouseenter', stopAutoPlay);
-        carousel.addEventListener('mouseleave', startAutoPlay);
-
-        // Handle resize dynamically
-        window.addEventListener('resize', () => {
-            const newVisible = getVisibleCards();
-            if (newVisible !== visibleCards) {
-                visibleCards = newVisible;
-                buildDots();
-                goToSlide(0);
-            }
-        });
-
-        // Update active index based on manual scrolling (touch/swipe)
-        let scrollTimeout;
-        carousel.addEventListener('scroll', () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                const gap = parseFloat(getComputedStyle(carousel).gap) || 24;
-                const cardWidth = cards[0].offsetWidth;
-                const stepWidth = cardWidth + gap;
-                const scrollLeft = carousel.scrollLeft;
-
-                let newIndex = Math.round(scrollLeft / stepWidth);
-                newIndex = clamp(newIndex, 0, totalSteps - 1);
-
-                if (newIndex !== currentIndex) {
-                    currentIndex = newIndex;
-                    updateDots();
-                }
-            }, 100);
-        });
-
-        // Init
-        buildDots();
-        startAutoPlay();
-    };
-
-
-    // ══════════════════════════════════════════════
     //  MASTER INITIALISATION
     // ══════════════════════════════════════════════
 
@@ -921,7 +732,6 @@
         safeInit('Text Split',          initTextSplit);
         safeInit('Scroll Progress',     initScrollProgress);
         safeInit('Hover Tilt',          initHoverTilt);
-        safeInit('Reviews Carousel',    initReviewsCarousel);
     };
 
     // Kick everything off once the DOM is ready

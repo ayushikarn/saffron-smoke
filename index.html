@@ -46,10 +46,10 @@
         </a>
 
         <ul class="nav-links" id="navLinks">
-            <li><a href="#hero">Home</a></li>
+            <li><a href="#hero" class="active">Home</a></li>
             <li><a href="#chef">Our Story</a></li>
             <li><a href="#menu">Menu</a></li>
-            <li><a href="#gallery" class="active">Gallery</a></li>
+            <li><a href="#gallery">Gallery</a></li>
             <li><a href="#reservations">Reservations</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -126,195 +126,139 @@
     </div>
 
     <!-- ============================================
-         OUR STORY / TIMELINE SECTION
+         CHEF / OUR STORY SECTION
     ============================================= -->
-    <section class="story-section" id="chef">
-        <div class="story-header reveal">
-            <p class="section-label">Our Journey</p>
-            <h2 class="story-title">A Story Written in Flame</h2>
-        </div>
-
-        <div class="story-timeline">
-            <!-- 1. THE BEGINNING -->
-            <div class="story-item">
-                <div class="story-content reveal reveal-right stagger">
-                    <span class="story-chapter">01</span>
-                    <h3 class="story-heading">The Spark</h3>
-                    <p class="story-text">
-                        Every legend begins with a spark. For Chef Arjun Malhotra, it happened over a simple, open-fire hearth in a small village kitchen. There, he witnessed the primal magic of wood-smoke transforming raw ingredients into something profound. That single moment ignited a lifelong obsession with fire, heat, and the quiet alchemy of cooking.
-                    </p>
+    <section class="chef-section" id="chef">
+        <div class="chef-inner">
+            <!-- Left - Images -->
+            <div class="chef-images reveal reveal-left">
+                <div class="chef-accent-frame" aria-hidden="true"></div>
+                <div class="chef-main-image img-hover-zoom">
+                    <img src="assets/images/chef-portrait.jpg" alt="Executive Chef Arjun Malhotra cooking over open flames in the restaurant kitchen">
                 </div>
-                <div class="story-image reveal reveal-left img-hover-zoom">
-                    <img src="assets/images/hero-bg.jpg" alt="A warm, dimly lit restaurant setting reflecting early inspiration">
+                <div class="chef-secondary-image img-hover-zoom">
+                    <img src="assets/images/chef-cooking.jpg" alt="Chef's hands preparing a gourmet dish over live fire with dramatic flames">
                 </div>
             </div>
 
-            <!-- 2. THE JOURNEY -->
-            <div class="story-item story-item-reverse">
-                <div class="story-content reveal reveal-left stagger">
-                    <span class="story-chapter">02</span>
-                    <h3 class="story-heading">Passion & Perseverance</h3>
-                    <p class="story-text">
-                        Mastery is forged in the flames of relentless dedication. Across two decades, from the disciplined kitchens of Tokyo to the avant-garde spaces of Copenhagen, the journey was marked by late nights, burnt fingers, and an unyielding pursuit of perfection. Saffron & Smoke is the culmination of those years—a testament to perseverance.
-                    </p>
-                </div>
-                <div class="story-image reveal reveal-right img-hover-zoom">
-                    <img src="assets/images/chef-portrait.jpg" alt="Executive Chef Arjun Malhotra looking focused">
-                </div>
-            </div>
+            <!-- Right - Content -->
+            <div class="chef-content reveal reveal-right">
+                <div class="stagger">
+                    <p class="section-label">Know Your Chef</p>
+                    <h2 class="chef-name">Chef Arjun Malhotra</h2>
+                    <p class="chef-title-text">Founder & Executive Chef</p>
 
-            <!-- 3. THE PHILOSOPHY -->
-            <div class="story-item">
-                <div class="story-content reveal reveal-right stagger">
-                    <span class="story-chapter">03</span>
-                    <h3 class="story-heading">Fire. Flavor. Authenticity.</h3>
-                    <p class="story-text">
-                        We believe that cooking is a meditation. Our saffron is hand-harvested from the high altitudes of Kashmir; our meats age patiently in Himalayan salt chambers. We strip away the unnecessary, honoring the deep, authentic flavors drawn out by selected ancient woods and controlled embers. Nothing is rushed.
+                    <p class="chef-philosophy">
+                        With two decades spent mastering the ancient art of live-fire cooking across
+                        the kitchens of Tokyo, Copenhagen, and Mumbai, Chef Arjun created Saffron & Smoke
+                        as a sanctuary — a place where the primal dance of flame and the delicate whisper
+                        of saffron converge into something transcendent.
                     </p>
-                </div>
-                <div class="story-image reveal reveal-left img-hover-zoom">
-                    <img src="assets/images/signature-dish.jpg" alt="Artful presentation of a signature dish">
-                </div>
-            </div>
 
-            <!-- 4. THE RESTAURANT -->
-            <div class="story-item story-item-reverse">
-                <div class="story-content reveal reveal-left stagger">
-                    <span class="story-chapter">04</span>
-                    <h3 class="story-heading">The Experience</h3>
-                    <p class="story-text">
-                        To dine at Saffron & Smoke is to enter a sanctuary. Limited to just forty guests each evening, the atmosphere is deliberately intimate. Warm gold accents, deep shadows, and the ambient hum of the open kitchen create an environment where every sense is engaged, and every table becomes its own private world.
+                    <p class="chef-philosophy">
+                        Every dish at Saffron & Smoke is a meditation on patience. We source our saffron
+                        from the high-altitude fields of Kashmir, our meats are aged in custom-built
+                        Himalayan salt chambers, and our smoking woods are hand-selected from ancient orchards.
+                        Nothing here is rushed. Nothing is ordinary.
                     </p>
-                </div>
-                <div class="story-image reveal reveal-right img-hover-zoom">
-                    <img src="assets/images/chef-cooking.jpg" alt="Chef preparing dishes over an open flame">
-                </div>
-            </div>
 
-            <!-- 5. THE FUTURE -->
-            <div class="story-item">
-                <div class="story-content reveal reveal-right stagger">
-                    <span class="story-chapter">05</span>
-                    <h3 class="story-heading">Continuing the Legacy</h3>
-                    <p class="story-text">
-                        While our roots are ancient, our vision looks steadily forward. We continually explore new techniques and undiscovered flavors, ensuring that the dance between fire and saffron never grows still. Our promise to you remains unwavering: an unforgettable culinary journey, every single night.
-                    </p>
-                    <blockquote class="story-quote">
-                        "Cooking is not about ingredients. It is about the silence between the flames."
+                    <blockquote class="chef-quote">
+                        "Cooking is not about ingredients. It is about the silence between the flames —
+                        the moment when heat transforms the ordinary into the unforgettable."
                     </blockquote>
-                    <div class="story-signature">— Arjun Malhotra</div>
-                </div>
-                <div class="story-image reveal reveal-left img-hover-zoom">
-                    <img src="assets/images/hero-dish.jpg" alt="A visionary look at a perfectly executed dish">
-                </div>
-            </div>
-        </div>
 
-        <!-- Chef Stats Re-integrated neatly below the story -->
-        <div class="chef-stats-container">
-            <div class="chef-stats">
-                <div class="chef-stat reveal">
-                    <span class="chef-stat-number counter" data-target="22">0</span>
-                    <span class="chef-stat-label">Years of Mastery</span>
-                </div>
-                <div class="chef-stat reveal">
-                    <span class="chef-stat-number counter" data-target="3">0</span>
-                    <span class="chef-stat-label">Michelin Stars</span>
-                </div>
-                <div class="chef-stat reveal">
-                    <span class="chef-stat-number counter" data-target="14">0</span>
-                    <span class="chef-stat-label">Global Awards</span>
+                    <div class="chef-signature" aria-label="Chef's signature">
+                        — Arjun Malhotra
+                    </div>
+
+                    <!-- Chef Stats -->
+                    <div class="chef-stats">
+                        <div class="chef-stat reveal">
+                            <span class="chef-stat-number counter" data-target="22">0</span>
+                            <span class="chef-stat-label">Years of Mastery</span>
+                        </div>
+                        <div class="chef-stat reveal">
+                            <span class="chef-stat-number counter" data-target="3">0</span>
+                            <span class="chef-stat-label">Michelin Stars</span>
+                        </div>
+                        <div class="chef-stat reveal">
+                            <span class="chef-stat-number counter" data-target="14">0</span>
+                            <span class="chef-stat-label">Global Awards</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================
-         MENU PREVIEW SECTION
+         SIGNATURE EXPERIENCE SECTION
     ============================================= -->
-    <section class="menu-section" id="menu">
-        <div class="menu-inner">
-            <div class="menu-header reveal">
-                <p class="section-label">Curated Selection</p>
-                <h2 class="menu-title">A Menu Written in Flame</h2>
-                <p class="menu-subtitle">
+    <section class="experience-section" id="menu">
+        <div class="experience-inner">
+            <div class="experience-header reveal">
+                <p class="section-label">The Experience</p>
+                <h2 class="experience-title">A Menu Written in Flame</h2>
+                <p class="experience-subtitle">
                     Each course is an act in a story. Each ingredient, a character with a history.
                 </p>
             </div>
 
-            <div class="menu-grid stagger">
-                <!-- Starters -->
-                <div class="menu-category reveal">
-                    <h3 class="menu-category-title">Starters</h3>
-
-                    <div class="menu-item reveal-item">
-                        <div class="menu-item-header">
-                            <h4 class="menu-item-name">Smoked Burrata</h4>
-                            <div class="menu-item-dots"></div>
-                            <span class="menu-item-price">₹1,800</span>
-                        </div>
-                        <p class="menu-item-text">Charred heirloom tomatoes, basil oil, saffron ash</p>
+            <div class="experience-grid stagger">
+                <!-- Card 1 -->
+                <div class="experience-card glass reveal">
+                    <div class="experience-card-image img-hover-zoom">
+                        <img src="assets/images/hero-dish.jpg" alt="The Ember Tasting — signature tasting menu course">
                     </div>
-
-                    <div class="menu-item reveal-item">
-                        <div class="menu-item-header">
-                            <h4 class="menu-item-name">Tandoori Prawns</h4>
-                            <div class="menu-item-dots"></div>
-                            <span class="menu-item-price">₹2,400</span>
-                        </div>
-                        <p class="menu-item-text">Clay-oven prawns, smoked chilli butter, pickled onion</p>
+                    <div class="experience-card-content">
+                        <span class="experience-card-number">01</span>
+                        <h3 class="experience-card-title">The Ember Tasting</h3>
+                        <p class="experience-card-text">
+                            A seven-course journey through fire-kissed flavors,
+                            beginning with our signature saffron amuse-bouche and
+                            concluding with a smoked vanilla ceremony.
+                        </p>
+                        <span class="experience-card-price">₹18,500 per guest</span>
                     </div>
                 </div>
 
-                <!-- Sizzlers -->
-                <div class="menu-category reveal">
-                    <h3 class="menu-category-title">Sizzlers</h3>
-
-                    <div class="menu-item reveal-item">
-                        <div class="menu-item-header">
-                            <h4 class="menu-item-name">Saffron Smoke Platter</h4>
-                            <div class="menu-item-dots"></div>
-                            <span class="menu-item-price">₹2,200</span>
-                        </div>
-                        <p class="menu-item-text">Paneer, vegetables and skewers finished over live fire</p>
+                <!-- Card 2 -->
+                <div class="experience-card glass reveal">
+                    <div class="experience-card-image img-hover-zoom">
+                        <img src="assets/images/signature-dish.jpg" alt="Chef's Table — private dining experience">
                     </div>
-
-                    <div class="menu-item reveal-item">
-                        <div class="menu-item-header">
-                            <h4 class="menu-item-name">Pepper Garlic Prawns</h4>
-                            <div class="menu-item-dots"></div>
-                            <span class="menu-item-price">₹2,800</span>
-                        </div>
-                        <p class="menu-item-text">Charred prawns, roasted garlic, black pepper glaze</p>
+                    <div class="experience-card-content">
+                        <span class="experience-card-number">02</span>
+                        <h3 class="experience-card-title">Chef's Table</h3>
+                        <p class="experience-card-text">
+                            An intimate evening at our obsidian counter, mere steps from
+                            the open flame. Watch your courses come alive, narrated by
+                            Chef Arjun himself.
+                        </p>
+                        <span class="experience-card-price">₹32,000 per guest</span>
                     </div>
                 </div>
 
-                <!-- Main Course -->
-                <div class="menu-category reveal">
-                    <h3 class="menu-category-title">Main Course</h3>
-
-                    <div class="menu-item reveal-item">
-                        <div class="menu-item-header">
-                            <h4 class="menu-item-name">Saffron Lamb</h4>
-                            <div class="menu-item-dots"></div>
-                            <span class="menu-item-price">₹3,400</span>
-                        </div>
-                        <p class="menu-item-text">Slow-cooked lamb, saffron jus, smoked garlic</p>
+                <!-- Card 3 -->
+                <div class="experience-card glass reveal">
+                    <div class="experience-card-image img-hover-zoom">
+                        <img src="assets/images/chef-cooking.jpg" alt="The Smoke Room — private event space">
                     </div>
-
-                    <div class="menu-item reveal-item">
-                        <div class="menu-item-header">
-                            <h4 class="menu-item-name">Charcoal Paneer</h4>
-                            <div class="menu-item-dots"></div>
-                            <span class="menu-item-price">₹2,100</span>
-                        </div>
-                        <p class="menu-item-text">Fire-roasted paneer, makhani reduction, burnt chilli</p>
+                    <div class="experience-card-content">
+                        <span class="experience-card-number">03</span>
+                        <h3 class="experience-card-title">The Smoke Room</h3>
+                        <p class="experience-card-text">
+                            Our private sanctum for celebrations that demand the
+                            extraordinary. Bespoke menus, rare vintages, and an
+                            atmosphere of absolute refinement.
+                        </p>
+                        <span class="experience-card-price">By Private Inquiry</span>
                     </div>
                 </div>
             </div>
 
-            <div class="menu-cta reveal">
-                <a href="menu.html" class="btn btn-outline magnetic-btn">
+            <div class="experience-cta reveal">
+                <a href="#reservations" class="btn btn-outline magnetic-btn">
                     View Full Menu
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </a>
@@ -323,152 +267,70 @@
     </section>
 
     <!-- ============================================
-         GALLERY SECTION
+         AMBIANCE / GALLERY PREVIEW SECTION
     ============================================= -->
-    <section class="gallery-section" id="gallery">
-        <div class="gallery-background"></div>
-        <div class="gallery-inner">
-            <!-- Left Introduction -->
-            <div class="gallery-intro reveal">
-                <div class="gallery-eyebrow">
-                    <span class="gallery-eyebrow-text">OUR GALLERY</span>
-                    <div class="gallery-eyebrow-line"></div>
-                </div>
-                <h2 class="gallery-title">
-                    Moments of Flavor,<br>
-                    Ambiance & Art
-                </h2>
-                <p class="gallery-description">
-                    A glimpse into our kitchen, our dining space, and the experiences we create — where every detail tells a story.
-                </p>
-                <a href="#gallery" class="btn btn-outline gallery-btn magnetic-btn">
-                    VIEW MORE →
-                </a>
+    <section class="ambiance-section" id="gallery">
+        <div class="ambiance-inner">
+            <div class="ambiance-header reveal">
+                <p class="section-label">The Atmosphere</p>
+                <h2 class="ambiance-title">Where Every Detail Whispers Luxury</h2>
             </div>
 
-            <!-- Right Asymmetric Grid -->
-            <div class="gallery-grid reveal stagger">
-                <!-- Images will be structured via grid layout -->
-                <div class="gallery-item img-hover-zoom">
-                    <img src="assets/images/signature-dish.jpg" alt="Signature plated Indian dish">
+            <div class="ambiance-gallery reveal">
+                <div class="ambiance-item ambiance-large img-hover-zoom">
+                    <img src="assets/images/hero-bg.jpg" alt="Main dining hall with warm candlelight ambiance">
+                    <div class="ambiance-overlay">
+                        <span>The Grand Hall</span>
+                    </div>
                 </div>
-                <div class="gallery-item img-hover-zoom">
-                    <img src="assets/images/hero-bg.jpg" alt="Luxury restaurant interior">
+                <div class="ambiance-item img-hover-zoom">
+                    <img src="assets/images/chef-cooking.jpg" alt="Open kitchen with live fire cooking">
+                    <div class="ambiance-overlay">
+                        <span>The Open Flame</span>
+                    </div>
                 </div>
-                <div class="gallery-item img-hover-zoom">
-                    <img src="assets/images/chef-cooking.jpg" alt="Chef cooking">
+                <div class="ambiance-item img-hover-zoom">
+                    <img src="assets/images/signature-dish.jpg" alt="Artisan dessert with gold details">
+                    <div class="ambiance-overlay">
+                        <span>The Craft</span>
+                    </div>
                 </div>
-                <div class="gallery-item img-hover-zoom">
-                    <img src="assets/images/hero-dish.jpg" alt="Premium cocktail or dish">
-                </div>
-                <div class="gallery-item img-hover-zoom">
-                    <img src="assets/images/chef-cooking.jpg" alt="Open flame cooking">
-                </div>
-                <div class="gallery-item img-hover-zoom">
-                    <img src="assets/images/signature-dish.jpg" alt="Another Indian dish">
+                <div class="ambiance-item img-hover-zoom">
+                    <img src="assets/images/hero-dish.jpg" alt="Signature seared dish with steam">
+                    <div class="ambiance-overlay">
+                        <span>The Presentation</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================
-         REVIEWS SECTION
+         TESTIMONIAL / PRESS SECTION
     ============================================= -->
-    <section class="reviews-section" id="reviews">
-        <!-- Optional Background element -->
-        <div class="reviews-background"></div>
-        <div class="reviews-inner">
-            <div class="reviews-header reveal">
-                <p class="gallery-eyebrow-text" style="display:inline-block; margin-bottom: 0.5rem;">REAL EXPERIENCES</p>
-                <h2 class="reviews-title">What Our Guests Say</h2>
-                <p class="reviews-description">
-                    Stories, memories and kind words from our amazing guests.<br>
-                    Your trust inspires us to keep creating unforgettable experiences.
+    <section class="press-section" id="press">
+        <div class="press-inner">
+            <div class="gold-divider reveal"></div>
+            <div class="press-quote reveal">
+                <p class="press-quote-text">
+                    "Saffron & Smoke is not a restaurant. It is a revelation.
+                    Every course is a love letter to fire, patience, and the art of making
+                    the ordinary transcend into the sublime."
                 </p>
+                <div class="press-quote-source">
+                    <span class="press-source-name">The Culinary Gazette</span>
+                    <span class="press-source-stars">★ ★ ★ ★ ★</span>
+                </div>
             </div>
+            <div class="gold-divider reveal"></div>
 
-            <div class="reviews-carousel-wrapper reveal reveal-scale">
-                <div class="reviews-carousel" id="reviewsCarousel">
-
-                    <div class="review-card">
-                        <div class="review-card-header">
-                            <div class="review-avatar">R</div>
-                            <div class="review-meta">
-                                <h4 class="review-name">Riya Sharma</h4>
-                                <div class="review-stars">★★★★★</div>
-                            </div>
-                        </div>
-                        <p class="review-text">
-                            "The food was absolutely divine! Every dish was full of flavor and the ambience made it even more special. Definitely coming back!"
-                        </p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-card-header">
-                            <div class="review-avatar">A</div>
-                            <div class="review-meta">
-                                <h4 class="review-name">Aarav Patel</h4>
-                                <div class="review-stars">★★★★★</div>
-                            </div>
-                        </div>
-                        <p class="review-text">
-                            "An unforgettable evening. The saffron lamb was incredibly tender and the smoky aroma is something I will remember for a long time."
-                        </p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-card-header">
-                            <div class="review-avatar">S</div>
-                            <div class="review-meta">
-                                <h4 class="review-name">Sophia Williams</h4>
-                                <div class="review-stars">★★★★★</div>
-                            </div>
-                        </div>
-                        <p class="review-text">
-                            "Exquisite attention to detail. From the moment we walked in, the service was impeccable and the cinematic atmosphere is unmatched."
-                        </p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-card-header">
-                            <div class="review-avatar">M</div>
-                            <div class="review-meta">
-                                <h4 class="review-name">Michael Chang</h4>
-                                <div class="review-stars">★★★★★</div>
-                            </div>
-                        </div>
-                        <p class="review-text">
-                            "A masterclass in modern Indian dining. The live fire elements bring a primal, yet deeply sophisticated touch to every single bite."
-                        </p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-card-header">
-                            <div class="review-avatar">K</div>
-                            <div class="review-meta">
-                                <h4 class="review-name">Kavya Iyer</h4>
-                                <div class="review-stars">★★★★★</div>
-                            </div>
-                        </div>
-                        <p class="review-text">
-                            "I have dined at Michelin star restaurants across the globe, and Saffron & Smoke easily ranks among the very best experiences of my life."
-                        </p>
-                    </div>
-
-                </div>
-
-                <!-- Controls -->
-                <div class="reviews-controls">
-                    <button class="review-btn review-prev" aria-label="Previous review">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-                    </button>
-                    <div class="review-dots" id="reviewDots">
-                        <!-- Dots populated by JS -->
-                    </div>
-                    <button class="review-btn review-next" aria-label="Next review">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </button>
-                </div>
+            <!-- Press Logos -->
+            <div class="press-logos reveal stagger">
+                <div class="press-logo">Michelin Guide</div>
+                <div class="press-logo">The Culinary Gazette</div>
+                <div class="press-logo">Condé Nast</div>
+                <div class="press-logo">Forbes Life</div>
+                <div class="press-logo">Vogue Living</div>
             </div>
         </div>
     </section>
