@@ -958,15 +958,45 @@ button {
 
 .reveal {
   opacity: 0;
-  transform: translateY(50px);
+  transform: translateY(30px); /* Slightly gentler movement */
   transition:
-    opacity 0.8s var(--ease-smooth),
-    transform 0.8s var(--ease-smooth);
+    opacity 1.2s var(--ease-smooth),
+    transform 1.2s var(--ease-smooth); /* Slower, more premium feel */
 }
 
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ── Menu Item Sequential Reveal ──────────────────────── */
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(15px);
+  transition:
+    opacity 0.8s var(--ease-smooth),
+    transform 0.8s var(--ease-smooth);
+}
+
+.reveal-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Image Scale Reveal (Cinematic) ───────────────────── */
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(1.03);
+  transition:
+    opacity 1.5s var(--ease-smooth),
+    transform 1.5s var(--ease-smooth);
+}
+
+.reveal-scale.active {
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* ── Direction Variants ───────────────────────────────── */
@@ -1005,6 +1035,10 @@ button {
 .stagger > *:nth-child(4) { transition-delay: 0.4s; }
 .stagger > *:nth-child(5) { transition-delay: 0.5s; }
 .stagger > *:nth-child(6) { transition-delay: 0.6s; }
+.stagger > *:nth-child(7) { transition-delay: 0.7s; }
+.stagger > *:nth-child(8) { transition-delay: 0.8s; }
+.stagger > *:nth-child(9) { transition-delay: 0.9s; }
+.stagger > *:nth-child(10) { transition-delay: 1.0s; }
 
 
 /* ==========================================================
@@ -1091,7 +1125,55 @@ button {
 }
 
 .full-menu-section {
-  padding-top: 4rem; /* Less padding for the dedicated menu page */
+  padding-top: 4rem;
+  padding-bottom: 0; /* Let the background images stretch to the bottom */
+}
+
+/* ── Menu Image Breaks & Layouts ────────────────────────────── */
+
+.menu-image-break {
+  position: relative;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  padding: 8rem 5%;
+  margin: 4rem 0;
+  overflow: hidden;
+  /* background-attachment: fixed is removed in favor of JS parallax for smoother, more consistent effect across browsers */
+}
+
+@media (max-width: 768px) {
+  .menu-image-break {
+    padding: 6rem 5%;
+    margin: 2rem 0;
+  }
+}
+
+.menu-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(18, 18, 18, 0.95) 0%,
+    rgba(18, 18, 18, 0.6) 50%,
+    rgba(18, 18, 18, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.menu-image-break .menu-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.menu-spacer {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .menu-spacer {
+    display: none;
+  }
 }
 
 .menu-inner {
@@ -2038,7 +2120,9 @@ button {
 
   .reveal,
   .reveal-left,
-  .reveal-right {
+  .reveal-right,
+  .reveal-item,
+  .reveal-scale {
     opacity: 1;
     transform: none;
   }

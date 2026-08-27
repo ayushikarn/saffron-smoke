@@ -296,7 +296,7 @@
     // ──────────────────────────────────────────────
 
     const initScrollReveal = () => {
-        const revealElements = document.querySelectorAll('.reveal');
+        const revealElements = document.querySelectorAll('.reveal, .reveal-item, .reveal-scale');
         if (!revealElements.length) return;
 
         const observerOptions = {
@@ -332,6 +332,7 @@
 
         const heroBgImg = document.querySelector('.hero-bg img');
         const heroDish = document.querySelector('.hero-dish-wrapper');
+        const parallaxBgElements = document.querySelectorAll('[data-parallax]');
         let parallaxTicking = false;
 
         const updateParallax = () => {
@@ -346,6 +347,17 @@
                 const dishOffset = clamp(scrollY * -0.1, -100, 0);
                 heroDish.style.transform = `translateY(${dishOffset}px)`;
             }
+
+            // Generic parallax for menu backgrounds
+            parallaxBgElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                // Check if element is in viewport
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    // Calculate a subtle offset based on position relative to center of screen
+                    const offset = (rect.top - (window.innerHeight / 2)) * 0.15;
+                    el.style.backgroundPositionY = `calc(50% + ${offset}px)`;
+                }
+            });
 
             parallaxTicking = false;
         };
@@ -362,6 +374,7 @@
             if (!isDesktop()) {
                 if (heroBgImg) heroBgImg.style.transform = '';
                 if (heroDish) heroDish.style.transform = '';
+                parallaxBgElements.forEach(el => el.style.backgroundPositionY = '');
             }
         }, 250));
     };
