@@ -46,10 +46,10 @@
         </a>
 
         <ul class="nav-links" id="navLinks">
-            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="#hero">Home</a></li>
             <li><a href="#chef">Our Story</a></li>
             <li><a href="#menu">Menu</a></li>
-            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#gallery" class="active">Gallery</a></li>
             <li><a href="#reservations">Reservations</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -323,70 +323,152 @@
     </section>
 
     <!-- ============================================
-         AMBIANCE / GALLERY PREVIEW SECTION
+         GALLERY SECTION
     ============================================= -->
-    <section class="ambiance-section" id="gallery">
-        <div class="ambiance-inner">
-            <div class="ambiance-header reveal">
-                <p class="section-label">The Atmosphere</p>
-                <h2 class="ambiance-title">Where Every Detail Whispers Luxury</h2>
+    <section class="gallery-section" id="gallery">
+        <div class="gallery-background"></div>
+        <div class="gallery-inner">
+            <!-- Left Introduction -->
+            <div class="gallery-intro reveal">
+                <div class="gallery-eyebrow">
+                    <span class="gallery-eyebrow-text">OUR GALLERY</span>
+                    <div class="gallery-eyebrow-line"></div>
+                </div>
+                <h2 class="gallery-title">
+                    Moments of Flavor,<br>
+                    Ambiance & Art
+                </h2>
+                <p class="gallery-description">
+                    A glimpse into our kitchen, our dining space, and the experiences we create — where every detail tells a story.
+                </p>
+                <a href="#gallery" class="btn btn-outline gallery-btn magnetic-btn">
+                    VIEW MORE →
+                </a>
             </div>
 
-            <div class="ambiance-gallery reveal">
-                <div class="ambiance-item ambiance-large img-hover-zoom">
-                    <img src="assets/images/hero-bg.jpg" alt="Main dining hall with warm candlelight ambiance">
-                    <div class="ambiance-overlay">
-                        <span>The Grand Hall</span>
-                    </div>
+            <!-- Right Asymmetric Grid -->
+            <div class="gallery-grid reveal stagger">
+                <!-- Images will be structured via grid layout -->
+                <div class="gallery-item img-hover-zoom">
+                    <img src="assets/images/signature-dish.jpg" alt="Signature plated Indian dish">
                 </div>
-                <div class="ambiance-item img-hover-zoom">
-                    <img src="assets/images/chef-cooking.jpg" alt="Open kitchen with live fire cooking">
-                    <div class="ambiance-overlay">
-                        <span>The Open Flame</span>
-                    </div>
+                <div class="gallery-item img-hover-zoom">
+                    <img src="assets/images/hero-bg.jpg" alt="Luxury restaurant interior">
                 </div>
-                <div class="ambiance-item img-hover-zoom">
-                    <img src="assets/images/signature-dish.jpg" alt="Artisan dessert with gold details">
-                    <div class="ambiance-overlay">
-                        <span>The Craft</span>
-                    </div>
+                <div class="gallery-item img-hover-zoom">
+                    <img src="assets/images/chef-cooking.jpg" alt="Chef cooking">
                 </div>
-                <div class="ambiance-item img-hover-zoom">
-                    <img src="assets/images/hero-dish.jpg" alt="Signature seared dish with steam">
-                    <div class="ambiance-overlay">
-                        <span>The Presentation</span>
-                    </div>
+                <div class="gallery-item img-hover-zoom">
+                    <img src="assets/images/hero-dish.jpg" alt="Premium cocktail or dish">
+                </div>
+                <div class="gallery-item img-hover-zoom">
+                    <img src="assets/images/chef-cooking.jpg" alt="Open flame cooking">
+                </div>
+                <div class="gallery-item img-hover-zoom">
+                    <img src="assets/images/signature-dish.jpg" alt="Another Indian dish">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================
-         TESTIMONIAL / PRESS SECTION
+         REVIEWS SECTION
     ============================================= -->
-    <section class="press-section" id="press">
-        <div class="press-inner">
-            <div class="gold-divider reveal"></div>
-            <div class="press-quote reveal">
-                <p class="press-quote-text">
-                    "Saffron & Smoke is not a restaurant. It is a revelation. 
-                    Every course is a love letter to fire, patience, and the art of making 
-                    the ordinary transcend into the sublime."
+    <section class="reviews-section" id="reviews">
+        <!-- Optional Background element -->
+        <div class="reviews-background"></div>
+        <div class="reviews-inner">
+            <div class="reviews-header reveal">
+                <p class="gallery-eyebrow-text" style="display:inline-block; margin-bottom: 0.5rem;">REAL EXPERIENCES</p>
+                <h2 class="reviews-title">What Our Guests Say</h2>
+                <p class="reviews-description">
+                    Stories, memories and kind words from our amazing guests.<br>
+                    Your trust inspires us to keep creating unforgettable experiences.
                 </p>
-                <div class="press-quote-source">
-                    <span class="press-source-name">The Culinary Gazette</span>
-                    <span class="press-source-stars">★ ★ ★ ★ ★</span>
-                </div>
             </div>
-            <div class="gold-divider reveal"></div>
 
-            <!-- Press Logos -->
-            <div class="press-logos reveal stagger">
-                <div class="press-logo">Michelin Guide</div>
-                <div class="press-logo">The Culinary Gazette</div>
-                <div class="press-logo">Condé Nast</div>
-                <div class="press-logo">Forbes Life</div>
-                <div class="press-logo">Vogue Living</div>
+            <div class="reviews-carousel-wrapper reveal reveal-scale">
+                <div class="reviews-carousel" id="reviewsCarousel">
+
+                    <div class="review-card">
+                        <div class="review-card-header">
+                            <div class="review-avatar">R</div>
+                            <div class="review-meta">
+                                <h4 class="review-name">Riya Sharma</h4>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">
+                            "The food was absolutely divine! Every dish was full of flavor and the ambience made it even more special. Definitely coming back!"
+                        </p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-card-header">
+                            <div class="review-avatar">A</div>
+                            <div class="review-meta">
+                                <h4 class="review-name">Aarav Patel</h4>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">
+                            "An unforgettable evening. The saffron lamb was incredibly tender and the smoky aroma is something I will remember for a long time."
+                        </p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-card-header">
+                            <div class="review-avatar">S</div>
+                            <div class="review-meta">
+                                <h4 class="review-name">Sophia Williams</h4>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">
+                            "Exquisite attention to detail. From the moment we walked in, the service was impeccable and the cinematic atmosphere is unmatched."
+                        </p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-card-header">
+                            <div class="review-avatar">M</div>
+                            <div class="review-meta">
+                                <h4 class="review-name">Michael Chang</h4>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">
+                            "A masterclass in modern Indian dining. The live fire elements bring a primal, yet deeply sophisticated touch to every single bite."
+                        </p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-card-header">
+                            <div class="review-avatar">K</div>
+                            <div class="review-meta">
+                                <h4 class="review-name">Kavya Iyer</h4>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">
+                            "I have dined at Michelin star restaurants across the globe, and Saffron & Smoke easily ranks among the very best experiences of my life."
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Controls -->
+                <div class="reviews-controls">
+                    <button class="review-btn review-prev" aria-label="Previous review">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    </button>
+                    <div class="review-dots" id="reviewDots">
+                        <!-- Dots populated by JS -->
+                    </div>
+                    <button class="review-btn review-next" aria-label="Next review">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
             </div>
         </div>
     </section>

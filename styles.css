@@ -246,14 +246,17 @@ button {
   align-items: center;
   justify-content: space-between;
   transition: all 0.4s var(--ease-smooth);
+  background: rgba(7, 7, 7, 0.95);
+  border-bottom: 1px solid rgba(200, 169, 106, 0.15);
 }
 
 .navbar.scrolled {
-  background: rgba(18, 18, 18, 0.9);
+  background: rgba(7, 7, 7, 0.98);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: var(--sp-sm) var(--side-padding);
   box-shadow: var(--shadow-nav);
+  border-bottom: 1px solid rgba(200, 169, 106, 0.3);
 }
 
 /* ── Logo ─────────────────────────────────────────────── */
@@ -261,17 +264,18 @@ button {
 .nav-logo {
   font-family: var(--ff-heading);
   color: var(--clr-gold);
-  font-size: 1.3rem;
-  letter-spacing: 3px;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 400;
   white-space: nowrap;
 }
 
 .nav-logo span {
   color: var(--clr-ivory);
   font-style: italic;
-  margin: 0 0.3rem;
+  margin: 0 0.2rem;
+  font-weight: 400;
 }
 
 /* ── Links ────────────────────────────────────────────── */
@@ -322,7 +326,7 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--clr-gold);
+  border: 1px solid rgba(200, 169, 106, 0.4);
   padding: 0.75rem 1.8rem;
   border-radius: var(--radius-pill);
   font-family: var(--ff-body);
@@ -331,15 +335,15 @@ button {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--clr-gold);
-  background: transparent;
+  background: rgba(18, 18, 18, 0.5);
   transition: all 0.4s var(--ease-smooth);
   white-space: nowrap;
 }
 
 .nav-reserve:hover {
-  background: var(--clr-gold);
-  color: var(--clr-bg);
-  box-shadow: var(--shadow-btn);
+  background: rgba(200, 169, 106, 0.1);
+  border-color: var(--clr-gold);
+  color: var(--clr-gold);
 }
 
 /* ── Mobile Toggle ────────────────────────────────────── */
@@ -1345,162 +1349,311 @@ button {
 
 
 /* ==========================================================
-   §12c  AMBIANCE / GALLERY SECTION
+   §12c  GALLERY SECTION
    ========================================================== */
 
-.ambiance-section {
+.gallery-section {
   background: var(--clr-bg);
-  padding: 6rem 5% 10rem;
+  padding: 8rem 5% 6rem;
   position: relative;
+  overflow: hidden;
 }
 
-.ambiance-inner {
-  max-width: 1400px;
+.gallery-background {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(200, 169, 106, 0.03) 0%, transparent 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.gallery-inner {
+  max-width: 1600px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 4rem;
+  align-items: center;
 }
 
-.ambiance-header {
-  text-align: center;
-  margin-bottom: 4rem;
+/* ── Left Introduction ────────────────────────────────── */
+
+.gallery-intro {
+  flex: 0 0 25%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
 }
 
-.ambiance-header .section-label {
-  justify-content: center;
+.gallery-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.ambiance-title {
+.gallery-eyebrow-text {
+  font-family: var(--ff-body);
+  font-size: 0.8rem;
+  color: var(--clr-gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.gallery-eyebrow-line {
+  flex-grow: 1;
+  height: 1px;
+  background: rgba(200, 169, 106, 0.4);
+}
+
+.gallery-title {
   font-family: var(--ff-heading);
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-size: clamp(2.5rem, 3.5vw, 3.5rem);
   color: var(--clr-ivory);
-  line-height: 1.15;
-  margin-top: 0.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
 }
 
-.ambiance-gallery {
+.gallery-description {
+  color: rgba(248, 243, 234, 0.6);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+.gallery-btn {
+  align-self: flex-start;
+  font-size: 0.8rem;
+  padding: 0.8rem 2rem;
+  border: 1px solid rgba(200, 169, 106, 0.5);
+  background: rgba(18, 18, 18, 0.5);
+  border-radius: var(--radius-pill);
+  color: var(--clr-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.4s var(--ease-smooth);
+}
+
+.gallery-btn:hover {
+  background: rgba(200, 169, 106, 0.1);
+  border-color: var(--clr-gold);
+  transform: translateY(-2px);
+}
+
+/* ── Right Asymmetric Grid ────────────────────────────── */
+
+.gallery-grid {
+  flex: 0 0 calc(75% - 4rem);
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 1.5rem;
-  height: 600px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 250px);
+  gap: 1rem;
 }
 
-.ambiance-item {
-  border-radius: var(--radius-lg);
+/* Make it asymmetric */
+.gallery-grid .gallery-item:nth-child(1) { grid-column: span 1; grid-row: span 1; }
+.gallery-grid .gallery-item:nth-child(2) { grid-column: span 2; grid-row: span 1; }
+.gallery-grid .gallery-item:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+.gallery-grid .gallery-item:nth-child(4) { grid-column: span 1; grid-row: span 1; }
+.gallery-grid .gallery-item:nth-child(5) { grid-column: span 1; grid-row: span 1; }
+.gallery-grid .gallery-item:nth-child(6) { grid-column: span 2; grid-row: span 1; }
+
+.gallery-item {
+  border-radius: var(--radius-sm);
   overflow: hidden;
   position: relative;
-  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.5);
 }
 
-.ambiance-item img {
+.gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s var(--ease-smooth);
+  transition: transform 0.8s ease-out, filter 0.8s ease-out;
+  filter: brightness(0.85) contrast(1.1);
 }
 
-.ambiance-item:hover img {
-  transform: scale(1.06);
-}
-
-.ambiance-large {
-  grid-row: 1 / 3;
-}
-
-.ambiance-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.5rem 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-  transform: translateY(100%);
-  transition: transform 0.4s var(--ease-smooth);
-}
-
-.ambiance-item:hover .ambiance-overlay {
-  transform: translateY(0);
-}
-
-.ambiance-overlay span {
-  font-family: var(--ff-heading);
-  font-size: 1.1rem;
-  color: var(--clr-ivory);
-  font-weight: 500;
+.gallery-item:hover img {
+  transform: scale(1.04);
+  filter: brightness(1) contrast(1.1);
 }
 
 
 /* ==========================================================
-   §12d  PRESS / TESTIMONIAL SECTION
+   §12d  REVIEWS SECTION
    ========================================================== */
 
-.press-section {
+.reviews-section {
   background: var(--clr-bg);
-  padding: 6rem 5% 8rem;
+  padding: 8rem 5% 8rem;
   position: relative;
+  overflow: hidden;
 }
 
-.press-inner {
-  max-width: 900px;
+.reviews-background {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 70%, rgba(200, 169, 106, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.reviews-inner {
+  max-width: 1600px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.reviews-header {
   text-align: center;
+  margin-bottom: 4rem;
 }
 
-.press-quote {
-  padding: 4rem 0;
-}
-
-.press-quote-text {
+.reviews-title {
   font-family: var(--ff-heading);
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  color: rgba(248, 243, 234, 0.8);
-  font-style: italic;
-  line-height: 1.7;
-  margin-bottom: 2rem;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  color: var(--clr-ivory);
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.press-quote-source {
+.reviews-description {
+  color: rgba(248, 243, 234, 0.6);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.reviews-carousel-wrapper {
+  position: relative;
+  padding: 0 1rem;
+}
+
+.reviews-carousel {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: hidden; /* Handled via JS */
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 2rem 0;
+}
+
+.review-card {
+  flex: 0 0 calc(25% - 1.125rem); /* 4 cards visible */
+  background: rgba(18, 18, 18, 0.6);
+  border: 1px solid rgba(200, 169, 106, 0.15);
+  border-radius: var(--radius-sm);
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
+  gap: 1.5rem;
+  scroll-snap-align: start;
+  transition: transform 0.4s var(--ease-smooth), border-color 0.4s var(--ease-smooth);
 }
 
-.press-source-name {
-  font-family: var(--ff-body);
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--clr-gold);
-  font-weight: 600;
+.review-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(200, 169, 106, 0.4);
 }
 
-.press-source-stars {
-  color: var(--clr-gold);
-  font-size: 0.9rem;
-  letter-spacing: 3px;
-}
-
-.press-logos {
+.review-card-header {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 3rem;
-  flex-wrap: wrap;
-  padding-top: 3rem;
+  gap: 1rem;
 }
 
-.press-logo {
+.review-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(200, 169, 106, 0.1);
+  color: var(--clr-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--ff-heading);
-  font-size: 1rem;
-  color: rgba(248, 243, 234, 0.2);
-  font-weight: 600;
-  letter-spacing: 1px;
-  transition: color 0.3s var(--ease-smooth);
-  cursor: default;
+  font-size: 1.2rem;
+  border: 1px solid rgba(200, 169, 106, 0.3);
 }
 
-.press-logo:hover {
-  color: rgba(248, 243, 234, 0.5);
+.review-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.review-name {
+  font-family: var(--ff-body);
+  color: var(--clr-ivory);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.review-stars {
+  color: var(--clr-gold);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+}
+
+.review-text {
+  font-family: var(--ff-body);
+  color: rgba(248, 243, 234, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Controls */
+.reviews-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.review-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 169, 106, 0.4);
+  background: transparent;
+  color: var(--clr-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.review-btn:hover {
+  background: rgba(200, 169, 106, 0.1);
+  border-color: var(--clr-gold);
+  transform: scale(1.05);
+}
+
+.review-dots {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.review-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(200, 169, 106, 0.2);
+  cursor: pointer;
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.review-dot.active {
+  background: var(--clr-gold);
+  transform: scale(1.3);
 }
 
 
@@ -1671,6 +1824,10 @@ button {
 
 @media (max-width: 1024px) {
 
+  .review-card {
+    flex: 0 0 calc(50% - 0.75rem); /* Show 2 cards */
+  }
+
   .menu-grid {
     gap: 3rem 4rem;
   }
@@ -1753,10 +1910,47 @@ button {
     justify-content: center;
   }
 
+  .gallery-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+  }
+
+  .gallery-intro {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .gallery-btn {
+    align-self: center;
+  }
+
   .menu-grid {
-    grid-template-columns: 1fr;
-    max-width: 600px;
-    margin: 0 auto 4rem;
+    flex: 1;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  /* Reset asymmetric span for mobile grid */
+  .gallery-grid .gallery-item:nth-child(1),
+  .gallery-grid .gallery-item:nth-child(2),
+  .gallery-grid .gallery-item:nth-child(3),
+  .gallery-grid .gallery-item:nth-child(4),
+  .gallery-grid .gallery-item:nth-child(5),
+  .gallery-grid .gallery-item:nth-child(6),
+  .gallery-grid .gallery-item:nth-child(7) {
+    grid-column: span 1;
+  }
+
+  .gallery-item {
+    height: 250px;
+  }
+
+  .review-card {
+    flex: 0 0 100%; /* Show 1 card */
   }
 
   .ambiance-gallery {
@@ -1929,6 +2123,10 @@ button {
 /* ── Small Mobile ─────────────────────────────────────── */
 
 @media (max-width: 480px) {
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
 
   .hero-buttons {
     flex-direction: column;
