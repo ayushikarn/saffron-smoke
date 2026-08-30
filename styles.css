@@ -1345,13 +1345,14 @@ button {
 
 
 /* ==========================================================
-   §12c  AMBIANCE / GALLERY SECTION
+   §12c  GALLERY SECTION (REDESIGNED CAROUSEL)
    ========================================================== */
 
 .ambiance-section {
   background: var(--clr-bg);
   padding: 6rem 5% 10rem;
   position: relative;
+  overflow: hidden;
 }
 
 .ambiance-inner {
@@ -1376,56 +1377,170 @@ button {
   margin-top: 0.5rem;
 }
 
-.ambiance-gallery {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 1.5rem;
-  height: 600px;
-}
-
-.ambiance-item {
+/* ── Carousel Wrapper ─────────────────────────────────── */
+.gallery-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  position: relative;
-  cursor: pointer;
+  box-shadow: var(--shadow-chef);
 }
 
-.ambiance-item img {
+.gallery-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--clr-black-deep);
+}
+
+/* ── Track & Slides ───────────────────────────────────── */
+.gallery-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.8s var(--ease-smooth);
+}
+
+.gallery-slide {
+  min-width: 100%;
+  padding: 0;
+  position: relative;
+}
+
+.gallery-slide-inner {
+  position: relative;
+  width: 100%;
+  height: 60vh; /* Premium cinematic height */
+  min-height: 400px;
+  max-height: 700px;
+}
+
+.gallery-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s var(--ease-smooth);
 }
 
-.ambiance-item:hover img {
-  transform: scale(1.06);
+/* ── Gradient Overlay for Text Visibility ─────────────── */
+.gallery-slide-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 10, 0.85) 0%,
+    rgba(10, 10, 10, 0.3) 40%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
-.ambiance-large {
-  grid-row: 1 / 3;
-}
-
-.ambiance-overlay {
+/* ── Caption ──────────────────────────────────────────── */
+.gallery-caption {
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
-  padding: 1.5rem 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-  transform: translateY(100%);
-  transition: transform 0.4s var(--ease-smooth);
+  width: 100%;
+  padding: 3rem 2rem;
+  z-index: 2;
+  text-align: center;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.6s var(--ease-smooth), opacity 0.6s var(--ease-smooth);
 }
 
-.ambiance-item:hover .ambiance-overlay {
+.gallery-slide.active .gallery-caption {
   transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.4s;
 }
 
-.ambiance-overlay span {
+.gallery-caption span {
   font-family: var(--ff-heading);
-  font-size: 1.1rem;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  color: var(--clr-gold);
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* ── Controls & Pagination ────────────────────────────── */
+.gallery-controls {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  z-index: 3;
+}
+
+.gallery-prev,
+.gallery-next {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 169, 106, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--clr-ivory);
-  font-weight: 500;
+  background: rgba(18, 18, 18, 0.4);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s var(--ease-smooth);
+  cursor: pointer;
+}
+
+.gallery-prev:hover,
+.gallery-next:hover {
+  border-color: var(--clr-gold);
+  color: var(--clr-gold);
+  background: rgba(18, 18, 18, 0.8);
+}
+
+.gallery-pagination {
+  display: flex;
+  gap: 1rem;
+}
+
+.gallery-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(248, 243, 234, 0.3);
+  cursor: pointer;
+  transition: all 0.4s var(--ease-smooth);
+}
+
+.gallery-dot:hover {
+  background: rgba(248, 243, 234, 0.7);
+}
+
+.gallery-dot.active {
+  background: var(--clr-gold);
+  transform: scale(1.3);
+}
+
+/* ── Mobile Responsive Overrides ──────────────────────── */
+@media (max-width: 768px) {
+  .gallery-slide-inner {
+    height: 50vh;
+  }
+  .gallery-caption {
+    padding: 2rem 1rem;
+  }
+  .gallery-controls {
+    bottom: 1rem;
+    gap: 1.5rem;
+  }
+  .gallery-prev,
+  .gallery-next {
+    width: 36px;
+    height: 36px;
+  }
 }
 
 

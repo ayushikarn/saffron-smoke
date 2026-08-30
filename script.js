@@ -729,6 +729,128 @@
     };
 
 
+    // ──────────────────────────────────────────────
+    //  18b. GALLERY CAROUSEL
+    // ──────────────────────────────────────────────
+
+    const initGalleryCarousel = () => {
+        const track = document.querySelector('.gallery-track');
+        if (!track) return;
+
+        const slides = Array.from(track.querySelectorAll('.gallery-slide'));
+        const nextBtn = document.querySelector('.gallery-next');
+        const prevBtn = document.querySelector('.gallery-prev');
+        const dots = Array.from(document.querySelectorAll('.gallery-dot'));
+        const carouselWrapper = document.querySelector('.gallery-carousel-wrapper');
+
+        if (!slides.length || !nextBtn || !prevBtn || !dots.length) return;
+
+        let currentIndex = 1; // 1 because 0 is clone of last
+        let isAnimating = false;
+        let autoPlayInterval;
+        const totalOriginalSlides = slides.length - 2;
+
+        const updateDots = (index) => {
+            dots.forEach(dot => dot.classList.remove('active'));
+            let activeDotIndex = index - 1;
+            if (activeDotIndex < 0) activeDotIndex = totalOriginalSlides - 1;
+            if (activeDotIndex >= totalOriginalSlides) activeDotIndex = 0;
+            if (dots[activeDotIndex]) dots[activeDotIndex].classList.add('active');
+        };
+
+        const updateActiveSlide = (index) => {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+
+            // Fix glitch: add active to the corresponding original/clone slide to prevent re-animation on jump
+            if (index === 0) {
+                slides[totalOriginalSlides].classList.add('active');
+            } else if (index === slides.length - 1) {
+                slides[1].classList.add('active');
+            } else if (index === 1) {
+                slides[slides.length - 1].classList.add('active');
+            } else if (index === totalOriginalSlides) {
+                slides[0].classList.add('active');
+            }
+        };
+
+        const moveToSlide = (index, smooth = true) => {
+            if (isAnimating && smooth) return;
+            isAnimating = smooth;
+
+            currentIndex = index;
+            track.style.transition = smooth ? 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none';
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            updateDots(currentIndex);
+            updateActiveSlide(currentIndex);
+
+            if (smooth) {
+                setTimeout(() => {
+                    if (currentIndex === 0) {
+                        moveToSlide(totalOriginalSlides, false);
+                    } else if (currentIndex === slides.length - 1) {
+                        moveToSlide(1, false);
+                    }
+                    isAnimating = false;
+                }, 800);
+            } else {
+                isAnimating = false;
+            }
+        };
+
+        const nextSlide = () => {
+            if (isAnimating) return;
+            moveToSlide(currentIndex + 1);
+        };
+
+        const prevSlide = () => {
+            if (isAnimating) return;
+            moveToSlide(currentIndex - 1);
+        };
+
+        const startAutoPlay = () => {
+            stopAutoPlay();
+            autoPlayInterval = setInterval(nextSlide, 5000); // 5 seconds
+        };
+
+        const stopAutoPlay = () => {
+            clearInterval(autoPlayInterval);
+        };
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            // Don't restart autoplay if we are hovered over the gallery
+            if (!carouselWrapper.matches(':hover')) {
+                startAutoPlay();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            // Don't restart autoplay if we are hovered over the gallery
+            if (!carouselWrapper.matches(':hover')) {
+                startAutoPlay();
+            }
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                if (isAnimating) return;
+                moveToSlide(index + 1);
+                startAutoPlay();
+            });
+        });
+
+        // Pause on hover
+        carouselWrapper.addEventListener('mouseenter', stopAutoPlay);
+        carouselWrapper.addEventListener('mouseleave', startAutoPlay);
+
+        // Initial setup
+        track.style.transform = `translateX(-100%)`;
+        startAutoPlay();
+    };
+
     // ══════════════════════════════════════════════
     //  MASTER INITIALISATION
     // ══════════════════════════════════════════════
@@ -763,6 +885,7 @@
         safeInit('Text Split',          initTextSplit);
         safeInit('Scroll Progress',     initScrollProgress);
         safeInit('Hover Tilt',          initHoverTilt);
+        safeInit('Gallery Carousel',    initGalleryCarousel);
     };
 
     // Kick everything off once the DOM is ready
