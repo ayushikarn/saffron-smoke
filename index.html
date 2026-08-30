@@ -332,30 +332,69 @@
                 <h2 class="ambiance-title">Where Every Detail Whispers Luxury</h2>
             </div>
 
-            <div class="ambiance-gallery reveal">
-                <div class="ambiance-item ambiance-large img-hover-zoom">
-                    <img src="assets/images/hero-bg.jpg" alt="Main dining hall with warm candlelight ambiance">
-                    <div class="ambiance-overlay">
-                        <span>The Grand Hall</span>
+                        <div class="gallery-carousel-wrapper reveal">
+                <div class="gallery-carousel">
+                    <div class="gallery-track">
+                        <!-- Cloned last slide for infinite looping backwards -->
+                        <div class="gallery-slide clone">
+                            <div class="gallery-slide-inner">
+                                <img src="assets/images/gallery-2.png" alt="The Saffron Experience">
+                                <div class="gallery-caption">
+                                    <span>THE SAFFRON EXPERIENCE</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Original Slides -->
+                        <div class="gallery-slide active">
+                            <div class="gallery-slide-inner">
+                                <img src="assets/images/gallery-1.png" alt="The Ember Table">
+                                <div class="gallery-caption">
+                                    <span>THE EMBER TABLE</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <div class="gallery-slide-inner">
+                                <img src="assets/images/hero-bg.jpg" alt="Fire & Flame">
+                                <div class="gallery-caption">
+                                    <span>FIRE & FLAME</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <div class="gallery-slide-inner">
+                                <img src="assets/images/gallery-2.png" alt="The Saffron Experience">
+                                <div class="gallery-caption">
+                                    <span>THE SAFFRON EXPERIENCE</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cloned first slide for infinite looping forwards -->
+                        <div class="gallery-slide clone">
+                            <div class="gallery-slide-inner">
+                                <img src="assets/images/gallery-1.png" alt="The Ember Table">
+                                <div class="gallery-caption">
+                                    <span>THE EMBER TABLE</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="ambiance-item img-hover-zoom">
-                    <img src="assets/images/chef-cooking.jpg" alt="Open kitchen with live fire cooking">
-                    <div class="ambiance-overlay">
-                        <span>The Open Flame</span>
+
+                <div class="gallery-controls">
+                    <button class="gallery-prev" aria-label="Previous image">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <div class="gallery-pagination">
+                        <span class="gallery-dot active" data-index="0"></span>
+                        <span class="gallery-dot" data-index="1"></span>
+                        <span class="gallery-dot" data-index="2"></span>
                     </div>
-                </div>
-                <div class="ambiance-item img-hover-zoom">
-                    <img src="assets/images/signature-dish.jpg" alt="Artisan dessert with gold details">
-                    <div class="ambiance-overlay">
-                        <span>The Craft</span>
-                    </div>
-                </div>
-                <div class="ambiance-item img-hover-zoom">
-                    <img src="assets/images/hero-dish.jpg" alt="Signature seared dish with steam">
-                    <div class="ambiance-overlay">
-                        <span>The Presentation</span>
-                    </div>
+                    <button class="gallery-next" aria-label="Next image">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
                 </div>
             </div>
         </div>
