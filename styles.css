@@ -317,6 +317,10 @@ button {
 }
 
 /* ── Reserve Button ───────────────────────────────────── */
+.mobile-only-reserve {
+  display: none;
+}
+
 
 .nav-reserve {
   display: inline-flex;
@@ -1904,7 +1908,7 @@ button {
 
 /* ── Mobile ───────────────────────────────────────────── */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
 
   .nav-links {
     position: fixed;
@@ -1934,8 +1938,17 @@ button {
   }
 
   .nav-reserve {
-    order: 10;
+    display: none;
+  }
+
+  .mobile-only-reserve {
+    display: block;
     margin-top: 2rem;
+  }
+
+  .mobile-only-reserve .nav-reserve {
+    display: inline-flex;
+    margin-top: 0;
   }
 
   .menu-toggle {
