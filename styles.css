@@ -276,14 +276,14 @@ button {
 
 /* ── Links ────────────────────────────────────────────── */
 
-.nav-links {
+.nav-menu {
   display: flex;
   align-items: center;
   gap: var(--sp-lg);
   list-style: none;
 }
 
-.nav-links a {
+.nav-menu a {
   color: var(--clr-ivory-80);
   font-family: var(--ff-body);
   font-size: 0.72rem;
@@ -294,7 +294,7 @@ button {
   transition: color 0.3s var(--ease-smooth);
 }
 
-.nav-links a::after {
+.nav-menu a::after {
   content: '';
   position: absolute;
   bottom: -4px;
@@ -307,12 +307,12 @@ button {
   transition: transform 0.4s var(--ease-smooth);
 }
 
-.nav-links a:hover::after,
-.nav-links a.active::after {
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
   transform: scaleX(1);
 }
 
-.nav-links a:hover {
+.nav-menu a:hover {
   color: var(--clr-gold);
 }
 
@@ -1787,7 +1787,10 @@ button {
 @media (max-width: 1024px) {
 
   .menu-grid {
-    gap: 3rem 4rem;
+    grid-template-columns: 1fr;
+    max-width: 700px;
+    margin: 0 auto 5rem;
+    gap: 3rem;
   }
 
   .hero-content {
@@ -1868,11 +1871,6 @@ button {
     justify-content: center;
   }
 
-  .menu-grid {
-    grid-template-columns: 1fr;
-    max-width: 600px;
-    margin: 0 auto 4rem;
-  }
 
   .ambiance-gallery {
     grid-template-columns: 1fr 1fr;
@@ -1906,7 +1904,7 @@ button {
 
 @media (max-width: 768px) {
 
-  .nav-links {
+  .nav-menu {
     position: fixed;
     top: 0;
     right: -100%;
@@ -1916,25 +1914,30 @@ button {
     background: rgba(18, 18, 18, 0.97);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding: 2rem;
     transition: right 0.4s var(--ease-smooth);
     box-shadow: var(--shadow-mobile-nav);
     gap: 2rem;
+    list-style: none;
+    margin: 0;
   }
 
-  .nav-links.active {
+  .nav-menu.active {
     right: 0;
   }
 
-  .nav-links a {
+
+
+  .nav-menu a {
     font-size: 0.85rem;
     letter-spacing: 3px;
   }
 
   .nav-reserve {
-    order: 10;
     margin-top: 2rem;
   }
 
@@ -2488,3 +2491,47 @@ button {
 /* ==========================================================
    END OF STYLESHEET — SAFFRON & SMOKE
    ========================================================== */
+
+/* Additional responsive rules requested in code review */
+
+@media (max-width: 1024px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .story-item {
+    grid-template-columns: 1fr;
+    gap: var(--sp-xl);
+  }
+
+  .story-item::after {
+    display: none;
+  }
+
+  .story-timeline::before {
+    display: none;
+  }
+
+  .story-item-reverse .story-content {
+    order: unset;
+  }
+
+  .story-content {
+    padding: 0;
+  }
+
+  .press-logos {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .press-logos {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
