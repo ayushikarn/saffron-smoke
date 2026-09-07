@@ -218,14 +218,18 @@
 
     const initMobileMenu = () => {
         const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        if (!menuToggle || !navLinks) return;
+        const navMenu = document.getElementById('navMenu');
+        if (!menuToggle || !navMenu) return;
 
         const toggleMenu = (forceClose = false) => {
             const shouldClose = forceClose || menuToggle.classList.contains('active');
 
             menuToggle.classList.toggle('active', !shouldClose);
-            navLinks.classList.toggle('active', !shouldClose);
+            navMenu.classList.toggle('active', !shouldClose);
+
+            // Set accessibility attributes
+            menuToggle.setAttribute('aria-expanded', !shouldClose);
+
             document.body.style.overflow = shouldClose ? '' : 'hidden';
         };
 
@@ -236,15 +240,15 @@
         });
 
         // Close when clicking a nav link
-        navLinks.querySelectorAll('a').forEach((link) => {
+        navMenu.querySelectorAll('a').forEach((link) => {
             link.addEventListener('click', () => toggleMenu(true));
         });
 
         // Close when clicking outside
         document.addEventListener('click', (e) => {
             if (
-                navLinks.classList.contains('active') &&
-                !navLinks.contains(e.target) &&
+                navMenu.classList.contains('active') &&
+                !navMenu.contains(e.target) &&
                 !menuToggle.contains(e.target)
             ) {
                 toggleMenu(true);
