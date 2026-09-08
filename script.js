@@ -218,18 +218,14 @@
 
     const initMobileMenu = () => {
         const menuToggle = document.querySelector('.menu-toggle');
-        const navMenu = document.getElementById('navMenu');
-        if (!menuToggle || !navMenu) return;
+        const navLinks = document.querySelector('.nav-links');
+        if (!menuToggle || !navLinks) return;
 
         const toggleMenu = (forceClose = false) => {
             const shouldClose = forceClose || menuToggle.classList.contains('active');
 
             menuToggle.classList.toggle('active', !shouldClose);
-            navMenu.classList.toggle('active', !shouldClose);
-
-            // Set accessibility attributes
-            menuToggle.setAttribute('aria-expanded', !shouldClose);
-
+            navLinks.classList.toggle('active', !shouldClose);
             document.body.style.overflow = shouldClose ? '' : 'hidden';
         };
 
@@ -240,15 +236,15 @@
         });
 
         // Close when clicking a nav link
-        navMenu.querySelectorAll('a').forEach((link) => {
+        navLinks.querySelectorAll('a').forEach((link) => {
             link.addEventListener('click', () => toggleMenu(true));
         });
 
         // Close when clicking outside
         document.addEventListener('click', (e) => {
             if (
-                navMenu.classList.contains('active') &&
-                !navMenu.contains(e.target) &&
+                navLinks.classList.contains('active') &&
+                !navLinks.contains(e.target) &&
                 !menuToggle.contains(e.target)
             ) {
                 toggleMenu(true);
@@ -1042,3 +1038,467 @@
     }
 
 })();
+
+/* ==========================================================
+   CHATBOT LOGIC
+   ========================================================== */
+
+const menuData = [
+  {
+    "name": "Smoked Burrata",
+    "price": 1800,
+    "description": "Charred heirloom tomatoes, basil oil, saffron ash",
+    "image": "assets/chatbot/smoked_burrata.webp",
+    "vegetarian": true,
+    "spicy": false,
+    "light": true,
+    "smoky": true,
+    "dessert": false
+  },
+  {
+    "name": "Tandoori Prawns",
+    "price": 2400,
+    "description": "Clay-oven prawns, smoked chilli butter, pickled onion",
+    "image": "assets/chatbot/tandoori_prawns.webp",
+    "vegetarian": false,
+    "spicy": true,
+    "light": false,
+    "smoky": true,
+    "dessert": false
+  },
+  {
+    "name": "Truffle Mushroom Tikka",
+    "price": 1900,
+    "description": "Wood-roasted mushrooms, truffle glaze, smoked salt",
+    "image": "assets/chatbot/truffle_mushroom_tikka.webp",
+    "vegetarian": true,
+    "spicy": false,
+    "light": false,
+    "smoky": true,
+    "dessert": false
+  },
+  {
+    "name": "Smoked Tomato Shorba",
+    "price": 1200,
+    "description": "Slow-roasted tomatoes, coriander oil, crisp garlic",
+    "image": "assets/chatbot/smoked_tomato_shorba.webp",
+    "vegetarian": true,
+    "spicy": false,
+    "light": true,
+    "smoky": true,
+    "dessert": false
+  },
+  {
+    "name": "Charred Citrus Salad",
+    "price": 1400,
+    "description": "Flame-kissed greens, orange segments, pistachio crumble",
+    "image": "assets/chatbot/charred_citrus_salad.webp",
+    "vegetarian": true,
+    "spicy": false,
+    "light": true,
+    "smoky": true,
+    "dessert": false
+  },
+  {
+    "name": "Saffron Smoke Platter",
+    "price": 2200,
+    "description": "Paneer, vegetables and skewers finished over live fire",
+    "image": "assets/chatbot/saffron_smoke_platter.webp",
+    "vegetarian": true,
+    "spicy": false,
+    "light": false,
+    "smoky": true,
+    "dessert": false
+  },
+  {
+    "name": "Pepper Garlic Prawns",
+    "price": 2800,
+    "description": "Charred prawns, roasted garlic, black pepper glaze",
+    "image": "assets/chatbot/pepper_garlic_prawns.webp",
+    "vegetarian": false,
+    "spicy": true,
+    "light": false,
+    "smoky": true,
+    "dessert": false
+  },
+  {
+    "name": "Saffron Lamb",
+    "price": 3400,
+    "description": "Slow-cooked lamb, saffron jus, smoked garlic",
+    "image": "assets/chatbot/saffron_lamb.webp",
+    "vegetarian": false,
+    "spicy": false,
+    "light": false,
+    "smoky": true,
+    "dessert": false
+  },
+  {
+    "name": "Charcoal Paneer",
+    "price": 2100,
+    "description": "Fire-roasted paneer, makhani reduction, burnt chilli",
+    "image": "assets/chatbot/charcoal_paneer.webp",
+    "vegetarian": true,
+    "spicy": true,
+    "light": false,
+    "smoky": true,
+    "dessert": false
+  },
+  {
+    "name": "Smoked Dal Makhani",
+    "price": 1600,
+    "description": "24-hour slow-cooked black lentils, churned butter",
+    "image": "assets/chatbot/smoked_dal_makhani.webp",
+    "vegetarian": true,
+    "spicy": false,
+    "light": false,
+    "smoky": true,
+    "dessert": false
+  },
+  {
+    "name": "Truffle Naan",
+    "price": 800,
+    "description": "Layered flatbread, fresh truffle, cultured butter",
+    "image": "assets/chatbot/truffle_naan.webp",
+    "vegetarian": true,
+    "spicy": false,
+    "light": false,
+    "smoky": false,
+    "dessert": false
+  },
+  {
+    "name": "Saffron Pulao",
+    "price": 1100,
+    "description": "Aged basmati, Kashmiri saffron, toasted nuts",
+    "image": "assets/chatbot/saffron_pulao.webp",
+    "vegetarian": true,
+    "spicy": false,
+    "light": false,
+    "smoky": false,
+    "dessert": false
+  },
+  {
+    "name": "Smoked Vanilla Bean Ice Cream",
+    "price": 1200,
+    "description": "House-churned, madagascar vanilla, salted caramel",
+    "image": "assets/chatbot/smoked_vanilla_bean_ice_cream.webp",
+    "vegetarian": true,
+    "spicy": false,
+    "light": false,
+    "smoky": true,
+    "dessert": true
+  },
+  {
+    "name": "Gold Leaf Rasmalai",
+    "price": 1500,
+    "description": "Saffron milk, pistachio, 24k gold",
+    "image": "assets/chatbot/gold_leaf_rasmalai.webp",
+    "vegetarian": true,
+    "spicy": false,
+    "light": false,
+    "smoky": false,
+    "dessert": true
+  }
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('chatbot-toggle');
+    const closeBtn = document.getElementById('chatbot-close');
+    const chatWindow = document.getElementById('chatbot-window');
+    const messagesContainer = document.getElementById('chatbot-messages');
+    const inputField = document.getElementById('chatbot-input');
+    const sendBtn = document.getElementById('chatbot-send');
+
+    if (!toggleBtn || !chatWindow) return;
+
+    let chatState = {
+        vegetarian: null,
+        smoky: null,
+        spicy: null,
+        light: null,
+        dessert: false,
+        maxPrice: null
+    };
+
+    let hasStarted = false;
+    let shownDishes = new Set(); // To implement "Show More" functionality
+
+    // Toggles
+    toggleBtn.addEventListener('click', () => {
+        chatWindow.classList.remove('hidden');
+        toggleBtn.style.display = 'none';
+        if (!hasStarted) {
+            initChat();
+            hasStarted = true;
+        }
+    });
+
+    closeBtn.addEventListener('click', () => {
+        chatWindow.classList.add('hidden');
+        setTimeout(() => {
+            toggleBtn.style.display = 'flex';
+        }, 300);
+    });
+
+    // Chat logic
+    function initChat() {
+        appendBotMessage(`Welcome to Saffron & Smoke 🔥<br><br>Not sure what to order?<br>Tell me what you're craving and I'll help you find the perfect dish.`);
+        appendOptions([
+            { label: '🌱 Vegetarian', action: () => updateStateAndRespond({ vegetarian: true }, "Vegetarian") },
+            { label: '🍤 Non-Vegetarian', action: () => updateStateAndRespond({ vegetarian: false }, "Non-Vegetarian") },
+            { label: '🔥 Something Smoky', action: () => updateStateAndRespond({ smoky: true }, "Something Smoky") },
+            { label: '🌶️ Something Spicy', action: () => updateStateAndRespond({ spicy: true }, "Something Spicy") },
+            { label: '🥗 Something Light', action: () => updateStateAndRespond({ light: true }, "Something Light") },
+            { label: '🍰 Dessert', action: () => updateStateAndRespond({ dessert: true }, "Dessert") },
+            { label: '👨‍🍳 Surprise Me', action: handleSurpriseMe }
+        ]);
+    }
+
+    function appendBotMessage(text) {
+        const msg = document.createElement('div');
+        msg.className = 'chat-msg bot';
+        msg.innerHTML = text;
+        messagesContainer.appendChild(msg);
+        scrollToBottom();
+    }
+
+    function appendUserMessage(text) {
+        const msg = document.createElement('div');
+        msg.className = 'chat-msg user';
+        msg.textContent = text;
+        messagesContainer.appendChild(msg);
+        scrollToBottom();
+    }
+
+    function appendOptions(options) {
+        const optsContainer = document.createElement('div');
+        optsContainer.className = 'chat-options';
+        options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'chat-btn';
+            btn.textContent = opt.label;
+            btn.addEventListener('click', () => {
+                optsContainer.remove(); // Remove options after click to clean up
+                appendUserMessage(opt.label);
+                opt.action();
+            });
+            optsContainer.appendChild(btn);
+        });
+        messagesContainer.appendChild(optsContainer);
+        scrollToBottom();
+    }
+
+    function appendRecommendations(dishes) {
+        if (dishes.length === 0) {
+            appendBotMessage("I couldn't find anything matching all your preferences right now. Let's try something else!");
+            showRefineOptions();
+            return;
+        }
+
+        dishes.forEach(dish => {
+            shownDishes.add(dish.name);
+            const card = document.createElement('div');
+            card.className = 'recommendation-card';
+            card.innerHTML = `
+                <div class="rec-img-container">
+                    <img src="${dish.image}" alt="${dish.name}">
+                </div>
+                <div class="rec-content">
+                    <h5 class="rec-title">${dish.name}</h5>
+                    <div class="rec-price">₹${dish.price.toLocaleString('en-IN')}</div>
+                    <p class="rec-desc">${dish.description}</p>
+                    <div class="rec-actions">
+                        <button class="rec-btn why-btn" data-dish="${dish.name}">Why this?</button>
+                        <a href="menu.html" class="rec-btn">View in Menu</a>
+                    </div>
+                </div>
+            `;
+            messagesContainer.appendChild(card);
+
+            // Add event listener to "Why this?"
+            const whyBtn = card.querySelector('.why-btn');
+            whyBtn.addEventListener('click', () => handleWhyThis(dish));
+        });
+        scrollToBottom();
+
+        setTimeout(showRefineOptions, 1000);
+    }
+
+    function showRefineOptions() {
+        appendBotMessage("What would you like to do next?");
+        appendOptions([
+            { label: '🔄 Show More', action: handleShowMore },
+            { label: '🎯 Refine My Choice', action: () => appendBotMessage("Tell me what else you'd like (e.g., 'no spicy', 'under 2000').") },
+            { label: '💰 Under ₹2,000', action: () => updateStateAndRespond({ maxPrice: 2000 }, "Under ₹2,000") },
+            { label: '🔥 More Smoky', action: () => updateStateAndRespond({ smoky: true }, "More Smoky") },
+            { label: '🌶️ More Spicy', action: () => updateStateAndRespond({ spicy: true }, "More Spicy") },
+            { label: '🥗 Something Lighter', action: () => updateStateAndRespond({ light: true }, "Something Lighter") },
+            { label: '✨ Surprise Me', action: handleSurpriseMe },
+            { label: '🔁 Start Over', action: () => {
+                chatState = { vegetarian: null, smoky: null, spicy: null, light: null, dessert: false, maxPrice: null };
+                shownDishes.clear();
+                appendBotMessage("Let's start fresh!");
+                initChat();
+            }}
+        ]);
+    }
+
+    function scrollToBottom() {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    // Logic Handlers
+    function updateStateAndRespond(newState, context) {
+        chatState = { ...chatState, ...newState };
+
+        if (context === "Vegetarian") {
+            appendBotMessage("Great choice! What kind of experience are you looking for?");
+            appendOptions([
+                { label: '🔥 Smoky & Grilled', action: () => updateStateAndRespond({ smoky: true }, "Smoky & Grilled") },
+                { label: '🍛 Comforting', action: () => updateStateAndRespond({ light: false }, "Comforting") },
+                { label: '🥗 Light & Fresh', action: () => updateStateAndRespond({ light: true }, "Light & Fresh") },
+                { label: '✨ Surprise Me', action: handleSurpriseMe }
+            ]);
+            return;
+        }
+
+        if (context === "Non-Vegetarian") {
+            appendBotMessage("Excellent. Would you prefer something spicy or smoky?");
+            appendOptions([
+                { label: '🔥 Smoky', action: () => updateStateAndRespond({ smoky: true }, "Smoky") },
+                { label: '🌶️ Spicy', action: () => updateStateAndRespond({ spicy: true }, "Spicy") },
+                { label: '✨ Surprise Me', action: handleSurpriseMe }
+            ]);
+            return;
+        }
+
+        recommendDishes();
+    }
+
+    function recommendDishes() {
+        let matches = menuData.filter(dish => {
+            if (chatState.vegetarian !== null && dish.vegetarian !== chatState.vegetarian) return false;
+            if (chatState.smoky !== null && dish.smoky !== chatState.smoky) return false;
+            if (chatState.spicy !== null && dish.spicy !== chatState.spicy) return false;
+            if (chatState.light !== null && dish.light !== chatState.light) return false;
+            if (chatState.dessert && !dish.dessert) return false;
+            if (!chatState.dessert && dish.dessert) return false; // Don't recommend dessert unless asked
+            if (chatState.maxPrice !== null && dish.price > chatState.maxPrice) return false;
+            return true;
+        });
+
+        // Filter out already shown dishes
+        const newMatches = matches.filter(d => !shownDishes.has(d.name));
+
+        // If we ran out of new matches, just show matches regardless
+        let finalMatches = newMatches.length > 0 ? newMatches : matches;
+
+        // Shuffle and pick top 2-3
+        finalMatches = finalMatches.sort(() => 0.5 - Math.random()).slice(0, 2);
+
+        appendBotMessage("Based on your preferences, here's what I recommend:");
+        appendRecommendations(finalMatches);
+    }
+
+    function handleSurpriseMe() {
+        appendUserMessage("Surprise Me");
+        const available = menuData.filter(d => !shownDishes.has(d.name));
+        const pool = available.length > 0 ? available : menuData;
+        const randomDish = pool[Math.floor(Math.random() * pool.length)];
+        appendBotMessage("I think you'll love this one:");
+        appendRecommendations([randomDish]);
+    }
+
+    function handleShowMore() {
+        appendUserMessage("Show More");
+        recommendDishes();
+    }
+
+    function handleWhyThis(dish) {
+        appendUserMessage(`Why ${dish.name}?`);
+
+        let reasons = [];
+        if (chatState.vegetarian === true) reasons.push("it's vegetarian");
+        if (chatState.vegetarian === false) reasons.push("it features premium meat/seafood");
+        if (chatState.smoky) reasons.push("it has the smoky character you asked for");
+        if (chatState.spicy === true) reasons.push("it packs a spicy punch");
+        if (chatState.spicy === false) reasons.push("it's mild and not spicy");
+        if (chatState.light) reasons.push("it's light and fresh");
+        if (chatState.dessert) reasons.push("it perfectly satisfies your sweet tooth");
+        if (chatState.maxPrice) reasons.push(`it is well under your budget of ₹${chatState.maxPrice}`);
+
+        if (reasons.length === 0) {
+            // Fallback reason if state is empty (e.g. they just hit surprise me)
+            if (dish.smoky) reasons.push("it's one of our signature fire-kissed specialties");
+            else reasons.push("it's a chef's favorite");
+        }
+
+        // Format reasons gracefully
+        let explanation = "";
+        if (reasons.length === 1) {
+            explanation = reasons[0];
+        } else if (reasons.length === 2) {
+            explanation = reasons.join(" and ");
+        } else {
+            const last = reasons.pop();
+            explanation = reasons.join(", ") + ", and " + last;
+        }
+
+        appendBotMessage(`I recommended **${dish.name}** because ${explanation}.`);
+    }
+
+    // NLP Text Input handling
+    sendBtn.addEventListener('click', handleTextInput);
+    inputField.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleTextInput();
+    });
+
+    function handleTextInput() {
+        const text = inputField.value.trim().toLowerCase();
+        if (!text) return;
+
+        appendUserMessage(inputField.value.trim());
+        inputField.value = '';
+
+        let stateUpdates = {};
+
+        // Positive keywords
+        if (text.includes('veg') && !text.includes('non') && !text.includes("don't eat non") && !text.includes("no non")) {
+            stateUpdates.vegetarian = true;
+        } else if (text.includes("don't eat non") || text.includes("no non")) {
+            stateUpdates.vegetarian = true; // Negating the negative
+        } else if (text.includes('non-veg') || text.includes('non veg')) {
+            stateUpdates.vegetarian = false;
+        } else if (text.includes("no veg") || text.includes("don't eat veg")) {
+            stateUpdates.vegetarian = false;
+        }
+        if (text.includes('spicy') && !text.includes('not') && !text.includes("don't")) stateUpdates.spicy = true;
+        if (text.includes('light')) stateUpdates.light = true;
+        if (text.includes('heavy') || text.includes('comfort')) stateUpdates.light = false;
+        if (text.includes('smoky') || text.includes('grilled') || text.includes('smoke')) stateUpdates.smoky = true;
+        if (text.includes('dessert') || text.includes('sweet')) stateUpdates.dessert = true;
+
+        // Negative keywords
+        if ((text.includes('not spicy') || text.includes("don't want spicy"))) stateUpdates.spicy = false;
+        if ((text.includes('not heavy') || text.includes("don't want heavy"))) stateUpdates.light = true;
+
+        // Price limit
+        const priceMatch = text.match(/(?:under|below)\s*₹?(\d+)/);
+        if (priceMatch) {
+            stateUpdates.maxPrice = parseInt(priceMatch[1], 10);
+        }
+
+        // Special actions
+        if (text.includes('surprise') || text.includes('chef')) {
+            handleSurpriseMe();
+            return;
+        }
+
+        if (Object.keys(stateUpdates).length > 0) {
+            chatState = { ...chatState, ...stateUpdates };
+            recommendDishes();
+        } else {
+            appendBotMessage("I'm not quite sure I caught that. Could you try selecting one of the options below?");
+            showRefineOptions();
+        }
+    }
+});

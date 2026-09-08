@@ -45,15 +45,16 @@
             Saffron <span>&</span> Smoke
         </a>
 
-        <ul class="nav-menu" id="navMenu">
+        <ul class="nav-links" id="navLinks">
             <li><a href="#hero" class="active">Home</a></li>
-                <li><a href="#chef">Our Story</a></li>
-                <li><a href="#menu">Menu</a></li>
-                <li><a href="#gallery">Experience</a></li>
-                <li><a href="#reviews">Reviews</a></li>
-                <li><a href="#contact">Contact</a></li>
-            <li><a href="#reservations" class="nav-reserve magnetic-btn">Reserve a Table</a></li>
+            <li><a href="#chef">Our Story</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#reservations">Reservations</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
+
+        <a href="#reservations" class="nav-reserve magnetic-btn">Reserve a Table</a>
 
         <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu" role="button" tabindex="0">
             <span></span>
@@ -615,5 +616,39 @@
 
     <!-- JavaScript -->
     <script src="script.js"></script>
+
+    <!-- Floating Chatbot -->
+    <div id="chatbot-container" class="chatbot-container">
+        <button id="chatbot-toggle" class="chatbot-toggle" aria-label="Open Chatbot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </button>
+        <div id="chatbot-window" class="chatbot-window hidden">
+            <div class="chatbot-header">
+                <div class="chatbot-header-info">
+                    <span class="chatbot-avatar">✨</span>
+                    <div>
+                        <h4>Saffron Concierge</h4>
+                        <p>Personal Food Assistant</p>
+                    </div>
+                </div>
+                <button id="chatbot-close" class="chatbot-close" aria-label="Close Chatbot">&times;</button>
+            </div>
+            <div id="chatbot-messages" class="chatbot-messages">
+                <!-- Messages will be injected here -->
+            </div>
+            <div class="chatbot-input-area">
+                <input type="text" id="chatbot-input" placeholder="Tell me what you're craving..." aria-label="Chat input">
+                <button id="chatbot-send" class="chatbot-send" aria-label="Send message">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
