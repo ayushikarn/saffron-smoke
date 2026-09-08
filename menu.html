@@ -15,6 +15,7 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chatbot.css">
 
     <!-- Favicon (inline SVG) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
@@ -301,7 +302,17 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <div id="chatbot-container" class="chatbot-container">
+        <div id="chatbot-help" class="chatbot-help"><button id="chatbot-help-open" class="chatbot-help-open" type="button">Want help choosing? 🍽️</button><button class="chatbot-help-dismiss" type="button" aria-label="Dismiss concierge hint">×</button></div>
+        <button id="chatbot-toggle" class="chatbot-launcher" type="button" aria-label="Open Saffron Concierge" aria-controls="chatbot-window" aria-expanded="false"><img src="assets/images/concierge-avatar.svg" alt=""></button>
+        <section id="chatbot-window" class="chatbot-window" role="dialog" aria-modal="true" aria-labelledby="chatbot-title" hidden>
+            <header class="chatbot-header"><div class="chatbot-header-info"><img class="chatbot-header-avatar" src="assets/images/concierge-avatar.svg" alt=""><div><h4 id="chatbot-title">Saffron Concierge</h4><p>Your personal dining guide</p><span class="chatbot-status">Available now</span></div></div><button id="chatbot-close" class="chatbot-close" type="button" aria-label="Close Saffron Concierge">×</button></header>
+            <div id="chatbot-messages" class="chatbot-messages" aria-live="polite" aria-label="Conversation"></div>
+            <form id="chatbot-form" class="chatbot-input-area"><input id="chatbot-input" class="chatbot-input" autocomplete="off" placeholder="Tell me what you're craving..." aria-label="Tell Saffron Concierge what you would like to eat"><button id="chatbot-send" class="chatbot-send" type="submit" aria-label="Send message">➤</button></form>
+        </section>
+    </div>
+    <script>window.disableLegacyChatbot = true;</script>
     <script src="script.js"></script>
+    <script src="chatbot.js"></script>
 </body>
 </html>

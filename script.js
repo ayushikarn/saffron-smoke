@@ -1201,6 +1201,7 @@ const menuData = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
+    if (window.disableLegacyChatbot) return;
     const toggleBtn = document.getElementById('chatbot-toggle');
     const closeBtn = document.getElementById('chatbot-close');
     const chatWindow = document.getElementById('chatbot-window');

@@ -2781,7 +2781,7 @@ button {
 }
 
 .chatbot-send:hover {
-  background-color: var(--clr-gold-80);
+  background-color: var(--clr-copper);
 }
 
 /* Chatbot Mobile Responsiveness */
