@@ -221,11 +221,14 @@
         const navLinks = document.querySelector('.nav-links');
         if (!menuToggle || !navLinks) return;
 
+        menuToggle.setAttribute('aria-expanded', 'false');
+
         const toggleMenu = (forceClose = false) => {
             const shouldClose = forceClose || menuToggle.classList.contains('active');
 
             menuToggle.classList.toggle('active', !shouldClose);
             navLinks.classList.toggle('active', !shouldClose);
+            menuToggle.setAttribute('aria-expanded', String(!shouldClose));
             document.body.style.overflow = shouldClose ? '' : 'hidden';
         };
 
@@ -248,6 +251,13 @@
                 !menuToggle.contains(e.target)
             ) {
                 toggleMenu(true);
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                toggleMenu(true);
+                menuToggle.focus();
             }
         });
     };
